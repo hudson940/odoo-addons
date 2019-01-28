@@ -1,0 +1,44 @@
+# Spanish translation for openobject-addons
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the openobject-addons package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: openobject-addons\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2019-01-23 07:33+0000\n"
+"PO-Revision-Date: 2019-01-23 18:06+0000\n"
+"Last-Translator: Anderson Martinez <andersonvidal94@gmail.com>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2012-03-07 05:31+0000\n"
+"X-Generator: Launchpad (build 14907)\n"
+
+#. module: hotel_folio_payment
+#: model:hotel.folio:0
+msgid ""
+msgstr ""
+
+#. module: hotel
+#: view:hotel_payment.hotel_view_hotel_folio1_form:0
+#: model:ir.actions.act_window,name:hotel.open_hotel_service_type_form_tree
+#: model:ir.model,name:hotel.model_hotel_service_type
+msgid "Register Payment"
+msgstr "Registrar Pago"
+
+#. module: hotel
+#: view:hotel_payment.view_account_payment_folio_form:0
+#: model:ir.actions.act_window,name:hotel.open_hotel_service_type_form_tree
+#: model:ir.model,name:hotel.model_hotel_service_type
+msgid "Print and Confirm"
+msgstr "Imprimir y validar"
+
+#. module: hotel
+#: view:hotel_payment.view_account_payment_form_inherit:0
+#: model:ir.actions.act_window,name:hotel.open_hotel_service_type_form_tree
+#: model:ir.model,name:hotel.model_hotel_service_type
+msgid "Print"
+msgstr "Imprimir"

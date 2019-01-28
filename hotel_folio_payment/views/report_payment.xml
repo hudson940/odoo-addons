@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_receipt_document">
+            <t t-call="report.external_layout">
+                <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+                <div class="page">
+                    <div id="hotel">
+                        <hr/>
+                        <div class="header" style="text-align:center;">
+                            <h1>
+                                <strong>Payment Receipt Hotel</strong>
+                            </h1>
+                        </div>
+                        <div class="row mt32 mb32">
+                            <div name="partner_address" class="col-xs-3">
+                                <strong>
+                                    <span t-field="o.partner_type"/>
+                                    <span>:</span>
+                                </strong>
+                                <address t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                                <span t-if="o.partner_id.vat">TIN:
+                                    <span t-field="o.partner_id.vat"/>
+                                </span>
+                            </div>
+                            <div class="col-xs-3 col-xs-offset-6">
+                                <t t-if="o.payment_date">
+                                    <strong>Payment Date:</strong>
+                                    <p t-field="o.payment_date"/>
+                                </t>
+                                <t t-if="o.name">
+                                    <strong>Reference NO:</strong>
+                                    <p t-field="o.name"/>
+                                </t>
+                                <t t-if="o.journal_id">
+                                    <strong>Payment Method:</strong>
+                                    <p t-field="o.journal_id"/>
+                                </t>
+                            </div>
+                        </div>
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr style="background-color:#9b9da0 !important;">
+                                    <th>Folio No</th>
+                                    <th class="text-right">Amount Untaxed</th>
+                                    <th class="text-right">Amount Tax</th>
+                                    <th class="text-right">Payment Amount</th>
+                                    <th class="text-right">Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody class="payment_tbody">
+                                <tr>
+                                    <td>
+                                        <span t-field="o.folio_id"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="o.folio_id.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="o.folio_id.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="o.amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="o.folio_id.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                </tr>
+                                <tr style="border-top:2px solid black !important;">
+                                    <td colspan="3">
+                                        <b>
+                                            <span>Total Receipt Amount:</span>
+                                        </b>
+                                    </td>
+                                    <td class="text-right">
+                                        <b>
+                                            <span t-field="o.amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                        </b>
+                                    </td>
+                                    <td/>
+                                </tr>
+                                <t t-if="o.currency_id != o.company_id.currency_id">
+                                    <tr>
+                                        <t t-set="c_amount" t-value="0.0"/>
+                                        <t t-foreach="o.move_line_ids" t-as="x">
+                                            <t t-if="x.credit == 0.0">
+                                                <t t-set="c_amount" t-value="x.debit"/>
+                                            </t>
+                                            <t t-if="x.credit != 0.0">
+                                                <t t-set="c_amount" t-value="x.credit"/>
+                                            </t>
+                                        </t>
+                                        <td colspan="3">
+                                            <b>
+                                                <span>Total Receipt Amount in</span>
+                                                <span t-field="o.company_id.currency_id.name"/>
+
+                                            </b>
+                                        </td>
+                                        <td class="text-right">
+                                            <b>
+                                                <span t-esc="c_amount" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
+                                            </b>
+                                        </td>
+                                        <td/>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="guest">
+                        <hr/>
+                        <div class="header" style="text-align:center;">
+                            <h1>
+                                <strong>Payment Receipt Guest</strong>
+                            </h1>
+                        </div>
+                        <div class="row mt32 mb32">
+                            <div name="partner_address" class="col-xs-3">
+                                <strong>
+                                    <span t-field="o.partner_type"/>
+                                    <span>:</span>
+                                </strong>
+                                <address t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                                <span t-if="o.partner_id.vat">TIN:
+                                    <span t-field="o.partner_id.vat"/>
+                                </span>
+                            </div>
+                            <div class="col-xs-3 col-xs-offset-6">
+                                <t t-if="o.payment_date">
+                                    <strong>Payment Date:</strong>
+                                    <p t-field="o.payment_date"/>
+                                </t>
+                                <t t-if="o.name">
+                                    <strong>Reference NO:</strong>
+                                    <p t-field="o.name"/>
+                                </t>
+                                <t t-if="o.journal_id">
+                                    <strong>Payment Method:</strong>
+                                    <p t-field="o.journal_id"/>
+                                </t>
+                            </div>
+                        </div>
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr style="background-color:#9b9da0 !important;">
+                                    <th>Folio No</th>
+                                    <th class="text-right">Amount Untaxed</th>
+                                    <th class="text-right">Amount Tax</th>
+                                    <th class="text-right">Payment Amount</th>
+                                    <th class="text-right">Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody class="payment_tbody">
+                                <tr>
+                                    <td>
+                                        <span t-field="o.folio_id"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="o.folio_id.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="o.folio_id.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="o.amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="o.folio_id.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                </tr>
+                                <tr style="border-top:2px solid black !important;">
+                                    <td colspan="3">
+                                        <b>
+                                            <span>Total Receipt Amount:</span>
+                                        </b>
+                                    </td>
+                                    <td class="text-right">
+                                        <b>
+                                            <span t-field="o.amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                        </b>
+                                    </td>
+                                    <td/>
+                                </tr>
+                                <t t-if="o.currency_id != o.company_id.currency_id">
+                                    <tr>
+                                        <t t-set="c_amount" t-value="0.0"/>
+                                        <t t-foreach="o.move_line_ids" t-as="x">
+                                            <t t-if="x.credit == 0.0">
+                                                <t t-set="c_amount" t-value="x.debit"/>
+                                            </t>
+                                            <t t-if="x.credit != 0.0">
+                                                <t t-set="c_amount" t-value="x.credit"/>
+                                            </t>
+                                        </t>
+                                        <td colspan="3">
+                                            <b>
+                                                <span>Total Receipt Amount in</span>
+                                                <span t-field="o.company_id.currency_id.name"/>
+
+                                            </b>
+                                        </td>
+                                        <td class="text-right">
+                                            <b>
+                                                <span t-esc="c_amount" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
+                                            </b>
+                                        </td>
+                                        <td/>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+
+        </template>
+
+        <template id="report_receipt">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="hotel_folio_payment.report_receipt_document" t-lang="o.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

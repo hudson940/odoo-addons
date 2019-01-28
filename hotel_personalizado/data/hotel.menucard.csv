@@ -1,0 +1,51 @@
+id,pos_categ_id/id,available_in_pos,name,price,iscategid,categ_id/id
+,__export__.pos_category_1,True,CEPILLO DE DIENTES ,3000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,TOALLAS HIGIENICAS ,1000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,CREMA DENTAL ,2000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,PROTECTORES ,500,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,MOAS PARA EL CABELLO,500,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,CONDONES TE AMO X 3 unida,3000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,MAQUINA DE AFEITAR ,3000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,DESODORANTE ,1000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,SHAMPU ,1000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,CREMA PARA PEINAR,1000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,JABON DE BAïż½O ,3000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,GEL FORMEN EGO,1000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,PEINE GRANDE ,1000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,CONDONES TODAY,4000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,BOMBOMBUM ,500,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,"CHOCORRAMO, GALA       ",1500,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,GALLETA CHOKIS - FRESA,800,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,PONI MALTA,2000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,DETODITO,2000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,DORITOS ,1500,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,PAPAS ,1500,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,PLATANITOS,1500,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,CHITOS ,1500,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,CHEESE TRIS,1500,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,GALLETAS CLUB SOCIAL ,600,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,COCACOLA,2500,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,GATORADE ,3000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,HIT,3000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,CERVEZA POKER,3000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,CERVEZACLUB COLOMBIA,3500,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,CERVEZA LIGHT,3000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,AGUA-H20,3000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,TE,3000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,VIVE 100,2500,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,AGUARDIENTE LLANERO,22000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,SAVILOE,3000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,BONTFIES ,2000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,ASPIRINA ,1000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,SALDE FRUTAS LUA,2500,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,BONYUR,3000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,AVENA ,2500,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,YOGUR,2000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,LECHE ALPINA,1500,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,SALCHICHA,3000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,MENTAS,1000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,PAN DE ARROZ,2000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,SPEED,2000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,MANTECADA,1000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,BROWNIE,2000,False,__export__.hotel_menucard_type_1
+,__export__.pos_category_1,True,REDBULL,6000,False,__export__.hotel_menucard_type_1

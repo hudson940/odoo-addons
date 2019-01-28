@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report id="account_receipt" model="account.payment" string="Receipt" report_type="qweb-pdf" name="hotel_folio_payment.report_receipt" file="hotel_folio_payment.report_receipt" />
+    </data>
+</odoo>
