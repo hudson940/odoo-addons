@@ -88,6 +88,15 @@ class HotelFolioInherit(models.Model):
                                            context={'tz': to_zone}),
                                           '%Y-%m-%d %H:%M:%S') + tm_delta
 
+    companion_ids = fields.Many2many('res.partner', string="Acompañantes", \
+                                     readonly=True,
+                                     states={'draft': [('readonly', False)],
+                                             'sent': [('readonly', False)]}, copy=True )
+    notes = fields.Text('notes', copy=True)
+    order_line = fields.One2many('sale.order.line', 'order_id', string='Order Lines',
+                                 states={'cancel': [('readonly', True)], 'done': [('readonly', True)]}, copy=False)
+
+
     # checkin_date = fields.Date('Check In', required=True, readonly=True,
     #                                states={'draft': [('readonly', False)]},
     #                                default=_get_checkin_date)
@@ -95,6 +104,10 @@ class HotelFolioInherit(models.Model):
     # checkout_date = fields.Date('Check Out', required=True, readonly=True,
     #                                 states={'draft': [('readonly', False)]},
     #                                 default=_get_checkout_date)
+
+    @api.multi
+    def get_adults(self):
+        return 1 + len(self.companion_ids)
 
     @api.onchange('checkout_date', 'checkin_date')
     def onchange_dates(self):
@@ -148,18 +161,39 @@ class HotelFolioInherit(models.Model):
             for line in self.service_lines:
                 line.write({"ser_checkout_date": chckout})
                 line.on_change_checkout()
-            self.write({"checkout_date": chckout})
+            self.checkout_date = chckout
             self.onchange_dates()
 
             return True
 
     @api.multi
+    def action_cancel_draft(self):
+        """
+        @overide
+        This method is used to change the state
+        to draft of the currency exchange
+        ---------------------------------------
+        @param self: object pointer
+        """
+        raise ValidationError(_('Acción no permitida, cancele el registro y dupliquelo \
+                        si es el caso!'))
+        return True
+
+    @api.multi
+    def action_set_room_dirty(self):
+        for line in self:
+            for rec in line.room_lines:
+                room_obj = self.env['hotel.room'].search([('name', '=', rec.product_id.name)])
+                room_obj.color = 7
+                room_obj.status = 'dirty'
+
+        return True
+
+    @api.multi
     def action_checkout(self):
         chckout = self.checkout_date
         if chckout:
-            if self.invoice_status !='invoiced':
-                chckout = datetime.datetime.strptime(
-                    chckout, DEFAULT_SERVER_DATETIME_FORMAT)
+            if self.invoice_status != 'invoiced':
                 chckout = datetime.datetime.now()
                 chckout = chckout.strftime(
                     DEFAULT_SERVER_DATETIME_FORMAT)
@@ -169,17 +203,34 @@ class HotelFolioInherit(models.Model):
                 for line in self.service_lines:
                     line.write({"ser_checkout_date": chckout})
                     line.on_change_checkout()
-                self.write({"checkout_date": chckout})
+                self.checkout_date= chckout
                 self.onchange_dates()
 
-                if self.amount_balance > 0:
-                    raise ValidationError(_('El balance debe ser 0 ó haber generado la factura'))
+            self.hotel_policy = 'picking'
+            self.action_set_room_dirty()
+            for line in self:
+                if line.amount_balance > 0:
+                    ctx = dict(line._context)
+                    view_payment = line.env.ref(
+                        'hotel_folio_payment.view_account_payment_folio_form')
+                    ctx.update({'folio_id': line.id, 'guest': line.partner_id.id})
+                    line.env.args = misc.frozendict(ctx)
 
-            for room in self.room_lines:
-                room.color= 6
-                room.status= 'dirty'
-
-            self.write({'hotel_policy': 'picking'})
+                    return {
+                        'name': _('Register Payment'),
+                        'res_model': 'account.payment',
+                        'type': 'ir.actions.act_window',
+                        'views': [(view_payment.id, 'form')],
+                        'view_id': view_payment.id,
+                        'view_mode': 'form',
+                        'view_type': 'form',
+                        'context': {'default_folio_id': ctx.get('folio_id'),
+                                    'default_partner_id': ctx.get('guest'),
+                                    'default_payment_type': 'inbound',
+                                    'default_amount': line.amount_balance
+                                    },
+                        'target': 'new',
+                    }
 
             return True
 
@@ -214,6 +265,11 @@ class HotelFolioInherit(models.Model):
                             },
                 'target': 'new'
                 }
+
+    @api.multi
+    def action_print_reservation(self):
+        self.filtered(lambda s: s.state == 'draft').write({'state': 'sent'})
+        return self.env['report'].get_action(self, 'hotel_personalizado.report_reservation')
 
 
 # for use without datetimes
@@ -306,7 +362,8 @@ class HotelFolioLineInherit(models.Model):
 
 class ResPartnerInherit(models.Model):
     _inherit = 'res.partner'
-    # birthday_date = fields.Date('Birthday date')
+
+    birthday_date = fields.Date('Birthday date')
 
 
 class HotelRoomInherit(models.Model):

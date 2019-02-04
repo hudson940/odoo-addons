@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+            id="report_reservation_folio"
+            string="Registro Hotelero"
+            model="hotel.folio"
+            report_type="qweb-pdf"
+            file="hotel_personalizado.report_reservation"
+            name="hotel_personalizado.report_reservation"
+        />
+        <report
+            id="report_reservation_reservation"
+            string="Registro Hotelero"
+            model="hotel.reservation"
+            report_type="qweb-pdf"
+            file="hotel_personalizado.report_reservation"
+            name="hotel_personalizado.report_reservation"
+        />
+    </data>
+</odoo>

@@ -14,10 +14,13 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/hotel_personalizado.xml'
+        'views/hotel_personalizado.xml',
+        'report/reservation_report.xml',
+        'report/reservation_report_templates.xml',
+        'report/invoice_report.xml'
 
     ],
-    'images': [],
+    'images': ['static/description/logo.png'],
     'installable': True,
     'auto_install': False,
 }

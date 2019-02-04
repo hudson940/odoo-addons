@@ -19,20 +19,153 @@
         <field name="target">new</field>
     </record>
 
+    <record id="hotel_custom_res_partner" model="ir.ui.view">
+        <field name="name">hotel.custom.res.partner</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="replace"/>
+            <xpath expr="//field[@name='website']" position="before">
+                <field name="vat" string="Identificación" placeholder="EJ. CC 112136525"/>
+                <field name="birthday_date" string="Fecha de nacimiento"/>
+            </xpath>
+        </field>
+    </record>
+
     <record id="hotel_custom_folio_form_view_inherited" model="ir.ui.view">
         <field name="name">hotel.custom.folio.form.view.inherited</field>
         <field name="model">hotel.folio</field>
         <field name="inherit_id" ref="hotel.view_hotel_folio1_form"/>
         <field name="arch" type="xml">
+            <xpath expr="//header" position="after">
+                <div class="alert alert-info" role="alert" style="margin-bottom:0px;">
+                     <field name="notes" />
+                </div>
+            </xpath>
             <xpath expr="//button[@name='action_cancel']" position="before">
-                <button name="action_add_order" type="object" states = "sale" string="Restaurant Order" attrs="{'invisible': ['|',('state', 'in', ('cancel','done')), ('invoice_status', 'in', 'invoiced'), ('hotel_policy', 'in', 'picking')]}" class="oe_highlight"/>
+                <button name="action_print_reservation" states="draft" string="Print" class="btn-primary" type="object"/>
+                <button name="action_add_order" type="object" string="Restaurant Order" attrs="{'invisible': ['|',('state', 'in', ('cancel','done')), ('invoice_status', 'in', 'invoiced'), ('hotel_policy', 'in', 'picking')]}" class="oe_highlight"/>
             </xpath>
             <xpath expr="//button[@name='action_cancel']" position="after">
-                <button name="add_room_day" type="object" string="Add one Day" attrs="{'invisible': ['|',('state', 'in', ('cancel','done')), ('invoice_status', 'in', 'invoiced')]}" class="oe_highlight"/>
-                <button name="action_checkout" type="object" string="Check Out" attrs="{'invisible': ['|',('state', 'in', ('cancel','done','draft'))]}" confirm="Seguro de hacer checkout? si no se ha facturado, esta acción cambiara la fecha de salida a hoy." class="oe_highlight"/>
+                <button name="add_room_day" type="object" string="Add one Day" attrs="{'invisible': ['|',('state', 'in', ('cancel','done')), ('invoice_status', 'in', 'invoiced'),('hotel_policy', 'in', 'picking')]}" class="oe_highlight"/>
+                <button name="action_checkout" type="object" string="Check Out" attrs="{'invisible': ['|',('state', 'in', ('cancel','done','draft')),('hotel_policy', 'in', 'picking')]}" confirm="Seguro de hacer checkout? si no se ha facturado, esta acción cambiara la fecha de salida a hoy." class="oe_highlight"/>
             </xpath>
+
+            <xpath expr="//button[@name='button_dummy']" position="replace">
+                <button name="button_dummy" string="Compute" attrs="{'invisible': ['|',('state', 'in', ('cancel','done')), ('invoice_status', 'in', 'invoiced'), ('hotel_policy', 'in', 'picking')]}"
+                                    type="object" class="fa fa-calculator" aria-hidden="true"
+                                    style="background-color:#7c7bad;" />
+            </xpath>
+
+            <xpath expr="//page[1]" position="after">
+                <page string="Acompañantes" name="companion_ids">
+                            <separator string="Acompañantes" colspan="4" />
+                            <field name="companion_ids" colspan="4" nolabel="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="country_id" string="País de origen"/>
+                                    <field name="birthday_date" />
+                                    <field name="vat" string="Identificación"/>
+                                </tree>
+                            </field>
+
+                </page>
+            </xpath>
+
+
         </field>
     </record>
+        <record id="hotel.view_hotel_room_kanban" model="ir.ui.view">
+        <field name="name">hotel.room.kanban</field>
+        <field name="model">hotel.room</field>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <kanban default_group_by="status">
+                <field name="name" />
+                <field name="status" />
+                <field name="color" />
+                <field name="lst_price" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div
+                            t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
+                            <div class="o_dropdown_kanban dropdown" groups="base.group_user">
+                                <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                                    <span class="fa fa-bars fa-lg" />
+                                </a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                    <t t-if="widget.editable">
+                                        <li>
+                                            <a type="edit">Edit</a>
+                                        </li>
+                                    </t>
+                                    <t t-if="widget.deletable">
+                                        <li>
+                                            <a type="delete">Delete</a>
+                                        </li>
+                                    </t>
+                                    <li>
+                                        <ul class="oe_kanban_colorpicker" data-field="color" />
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="oe_kanban_details" style='margin-top: -5px;'>
+                                <div class="oe_kanban_content">
+                                    <div class="oe_kanban_project_list">
+                                        <H3>
+                                            <a type="open">
+                                                <img
+                                                    t-att-src="kanban_image('hotel.room', 'image_medium', record.id.value)"
+                                                    style="height:70px;width:70px" class="oe_avatar oe_kanban_avatar_smallbox" />
+                                                <t t-if="record.code.raw_value" style="margin-right: 10px">
+                                                    [
+                                                    <field name="code" />
+                                                    ]
+                                                </t>
+                                                <field name="name" />
+                                            </a>
+                                        </H3>
+                                    </div>
+                                    <div name="tags" />
+                                    <ul>
+                                        <li>
+                                            Status:
+                                            <field name="status"></field>
+                                        </li>
+                                        <li>
+                                            Rate:
+                                            <field name="lst_price"></field>
+                                        </li>
+                                        <li>
+                                            Capacity:
+                                            <field name="capacity"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="oe_kanban_bottom_right">
+                                    <a t-if="record.status.raw_value === 'available'" type="object"
+                                        string="Available" name="set_room_status_occupied"
+                                        class="oe_kanban_status oe_kanban_status_green ">
+                                    </a>
+                                    <a t-if="record.status.raw_value === 'occupied'" type="object"
+                                        string="occupied" name="set_room_status_available"
+                                        class="oe_kanban_status oe_kanban_status_red ">
+                                    </a>
+                                    <a t-if="record.status.raw_value === 'dirty'" type="object"
+                                        string="dirty" name="set_room_status_available"
+                                        class="oe_kanban_status oe_kanban_status_red ">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="oe_clear"></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
     <record id="view_hotel_restaurant_order_list_form" model="ir.ui.view">
         <field name="name">hotel.restaurant.order.list.form</field>
         <field name="model">hotel.restaurant.order.list</field>

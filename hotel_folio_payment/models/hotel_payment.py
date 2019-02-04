@@ -103,6 +103,7 @@ class AccountPaymentInherit(models.Model):
         """
         if self.state == 'draft':
             self.post()
+
         return self.env['report'].get_action(self, 'hotel_folio_payment.report_receipt')
 
     folio_id = fields.Many2one('hotel.folio', 'Folio', ondelete='restrict')

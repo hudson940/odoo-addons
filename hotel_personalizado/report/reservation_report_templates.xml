@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_reservation_document">
+        <t >
+            <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})"/>
+            <div class="header">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <img t-if="doc.warehouse_id.partner_id.image" t-att-src="'data:image/png;base64,%s' % doc.warehouse_id.partner_id.image" style="max-height: 45px;"/>
+                    </div>
+                    <div class="col-xs-4" style="margin-top:20px;" >NIT 40.412.263-4 <BR>www.hotelembajador.co</BR></div>
+                    <div class="col-xs-2" style="margin-top:20px;">RNT 41187</div>
+                    <div class="col-xs-4" style="margin-top:20px;">REGISTRO HOTELERO <div t-field="doc.name"/></div>
+                </div>
+
+        </div>
+            <div class="page" xml:space="preserve">
+                <div class="col-xs-12" style="border: 1px solid; border-radius:12px">
+                    <div class="row">
+                        <div class="col-xs-3" style="border-bottom: 1px solid; border-right: 1px solid">
+                            <strong>Name/Nombre</strong>
+                            <div t-field="doc.partner_id.name">_
+                            </div>
+                            <hr/>
+                            <hr/>
+                        </div>
+                        <div class="col-xs-3" style="border-bottom: 1px solid; border-right: 1px solid">
+                            <strong>Nacionalidad</strong>
+                            <div t-field="doc.partner_id.country_id">_
+                            </div>
+                            <hr/>
+                            <hr/>
+
+                        </div>
+                        <div class="col-xs-3" style="border-bottom: 1px solid; border-right: 1px solid">
+                            <strong>Fecha Nac.</strong>
+                            <div t-field="doc.partner_id.birthday_date">_
+                            </div>
+                            <hr/>
+                            <hr/>
+                        </div>
+                        <div class="col-xs-3" style="border-bottom: 1px solid">
+                            <strong style="">Identification/ ID</strong>
+                            <div t-field="doc.partner_id.vat">_
+                            </div>
+                            <hr/>
+                            <hr/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-3" style="border-bottom: 1px solid; border-right: 1px solid">
+                            <strong style="">Address/Dirección</strong>
+                            <div t-field="doc.partner_id.street">_
+                            </div>
+                        </div>
+                        <div class="col-xs-3" style="border-bottom: 1px solid; border-right: 1px solid">
+                            <strong style="">City/Ciudad</strong>
+                            <div t-field="doc.partner_id.city">
+              _
+                            </div>
+                        </div>
+                        <div class="col-xs-3" style="border-bottom: 1px solid; border-right: 1px solid">
+                            <strong style="">Phone/Tel.</strong>
+                            <div t-field="doc.partner_id.phone">
+              _
+                            </div>
+                        </div>
+                        <div class="col-xs-3" style="border-bottom: 1px solid;">
+                            <strong style="">Procedencia</strong>
+                            <div>_</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2" style="border-bottom: 1px solid; border-right: 1px solid">
+                            <strong style="">Ocupación</strong>
+                            <div>_</div>
+                        </div>
+                        <div class="col-xs-4" style="border-bottom: 1px solid; border-right: 1px solid">
+                            <strong style="">Company/Empresa</strong>
+                            <div t-field="doc.partner_id.company_id">_</div>
+                        </div>
+                        <div class="col-xs-2" style="border-bottom: 1px solid; border-right: 1px solid">
+                            <strong style="">Phone/Tel.</strong>
+                            <div>_</div>
+                        </div>
+                        <div class="col-xs-4" style="border-bottom: 1px solid;">
+                            <strong style="">Email:</strong>
+                            <div t-field="doc.partner_id.email">_</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-8" style="border-right: 1px solid;">
+                            <strong style="">Notes/Observaciones</strong>
+                            <div t-field="doc.notes"></div>
+                            <hr/>
+                        </div>
+                        <div class="col-xs-4">
+                            <strong style="">Signature/Firma</strong>
+                            <hr/>
+                            <p style="font-size:7px">Con la firma del presente autorizo al Hotel conocer, actualizar, y rectificar mis datos personales
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <h5 style="margin-left:auto; margin-right:auto;width:50%">For Hotel Use Only/Para Uso Del Hotel
+                    </h5>
+                </div>
+                <div class="col-xs-12" style="border: 1px solid; border-radius:12px">
+                    <div class="row">
+                        <div class="col-xs-2" style="border-bottom: 1px solid; border-right: 1px solid">
+                            <strong style="">Habitación</strong>
+                            <div t-if="doc.room_lines" t-field="doc.room_lines[0].name">_</div>
+                        </div>
+                        <div class="col-xs-2" style="border-bottom: 1px solid; border-right: 1px solid">
+                            <strong style="">Adultos</strong>
+                            <div t-esc="doc.get_adults()">_</div>
+                        </div>
+                        <div class="col-xs-2" style="border-bottom: 1px solid; border-right: 1px solid">
+                            <strong style="">Niños</strong>
+                            <div>_</div>
+                        </div>
+                        <div class="col-xs-3" style="border-bottom: 1px solid; border-right: 1px solid">
+                            <strong style="">Tarifa</strong>
+                             <div t-if="doc.room_lines" t-field="doc.room_lines[0].price_unit"
+                                  t-options='{"widget": "monetary", "display_currency": doc.currency_id}'>_</div>
+                        </div>
+                        <div class="col-xs-3" style="border-bottom: 1px solid;">
+                            <strong style="">Observaciones</strong>
+                            <div>_</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3" style="border-right: 1px solid">
+                            <strong style="">Entrada</strong>
+                            <div t-field="doc.checkin_date">_</div>
+                        </div>
+                        <div class="col-xs-3" style="border-right: 1px solid">
+                            <strong style="">Salida</strong>
+                            <div t-field="doc.checkout_date">_</div>
+                        </div>
+                        <div class="col-xs-2" style="border-right: 1px solid">
+                            <strong style="">Días</strong>
+                            <div t-field="doc.duration">_</div>
+                        </div>
+                        <div class="col-xs-2" style="border-right: 1px solid">
+                            <strong style="">Vehiculo</strong>
+                            <div>_</div>
+                        </div>
+                        <div class="col-xs-2">
+                            <strong style="">Equipaje</strong>
+                            <div>_</div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+        <div class="col-xs-12">
+          <h5 style="margin-left:auto; margin-right:auto;width:80%">
+            Somos un Hotel sostenible y amigable con el ambiente NTS-TS 002
+          </h5>
+          <p style="font-size:8px">
+            <strong>Advertencia, </strong>El Hotel esta comprometido con el
+            cumplimiento del artículo 17 de la ley 679/01 y la ley 1336/09
+            de infancia y adolecencia. Se advierte al húesped que
+            rechazamos todo tipo de explotación, pornografía, abuso, y turismo
+            sexual con menores de edad, en el país son castigados penal y
+            civilmente.
+          </p>
+        </div>
+      </div>
+
+                <div class="col-xs-12" name="contract" style="font-size:7px;-webkit-column-count: 2;-moz-column-count: 2;column-count: 2;-webkit-column-gap: 20px;-moz-column-gap: 20px; column-gap: 20px;text-align: justify;
+  text-justify: inter-word;">
+      HOTEL EMBAJADOR DEL LLANO – CONTRATO DE SERVICIO DE HOSPEDAJE Entre el
+      HOTEL EMBAJADOR DEL LLANO y el HUÉSPED identificado como aparece en el
+      presente Registro Hotelero, se realiza el presente Contrato de Servicios
+      regidos por las siguientes Clausulas; PRIMERA- NATURALEZA DE SERVICIO-El
+      Hotel se compromete a prestar el servicio de Alojamiento con la ocupación
+      y la asistencia necesaria, en una habitación junto con sus accesorios
+      necesarios y suficientes para la estadía del Huésped en un ambiente de
+      tranquilidad y seguridad. SEGUNDA- TARIFAS- Las Tarifas ofrecidas serán
+      las q aparecen en el presente Registro y los servicios ofrecidos estarán
+      sujetos a disponibilidad, horarios, existencias y espacios necesario para
+      ellos. TERCERA DURACION- El Día Hotelero termina a las 1 pm del día
+      siguiente registrado en el Check-in cuando este es después de las 06:00
+      am. Esto no lo exime del pago del servicio cuando hay una utilización
+      parcial del tiempo límite establecido. CUARTA- PAGO. A excepción de los
+      Clientes Corporativos autorizados, el huésped hará un abono igual o
+      superior al valor de la habitación a la toma del servicio. El hotel tiene
+      el derecho de retención de las prendas y del equipaje del Huésped al
+      incumplimiento en su pago al Hotel, y le será devueltas tan pronto sean
+      cancelados todos los valores a cargo. El Hotel dará un plazo de (30) días
+      al Huésped para retirar sus artículos personales. De lo contrario hará uso
+      de ellas para solventar los cargos adeudados. Más un 20 por ciento de
+      costos de bodegaje sobre el valor agregado. E l excedente si lo hubiere,
+      quedará a disposición de Huésped; y en caso de déficit queda en libertad
+      del Hotel de tomar las acciones que considere pertinentes. QUINTA –
+      RESERVAS. Si el Hotel observa la imposibilidad de incumplir una reserva
+      aceptada a un Huésped o se ve en la obligación de cancelarla de forma
+      anticipada, deberá obtener alojamiento en otro alojamiento de tarifa y
+      condiciones similares a las del Hotel. Si la tarifa del segundo es
+      inferior a la negociada el Hotel reembolsará la diferencia y si es
+      superior se asumirá por el Hotel. La decisión será siempre del Hotel. Pero
+      procurará que no haya diferencias de tarifas. SEXTA- OBLIGACIONES A
+      OBLIGACIONES DEL HUESPED: 1. Declara conocer la tarifa y admite q éstas se
+      modifiquen sin previo aviso. 2. Conservará su indumentaria y vocabulario
+      adecuado. Una conducta decorosa y acorde a un establecimiento de descanso
+      y o hará acciones q perturben la tranquilidad de los demás Huéspedes, so
+      pena de sanciones establecidas por el Hotel y/o prestación del servicio.
+      3. Respetará los horarios establecidos por el Hotel para la prestación de
+      los diferentes servicios. 4. Es responsable hasta por la culpa leve de sus
+      obligaciones y las de sus acompañantes. 5. Admite que durante la
+      utilización de sus servicios que ofrece el Hotel y en general cualquier
+      actividad signifiquen un riesgo para el Huésped, implica que tiene las
+      habilidades y conocimientos que le permiten asumir ciertos riesgos. 6. Se
+      compromete a darle un uso adecuado a los bienes puestos a sus servicios y
+      es responsables por los daños, faltantes y averías de los inventarios
+      entregados durante su estadía . 7. En caso daño o pérdidas de inventarios
+      reconocerá el Hotel el valor estipulado por el Hotel, sin exceder el 200%
+      del precio de compra inicial. 8. Reconocerá el Gerente del Hotel como
+      autoridad en caso de controversia o conflicto. 9. Permitirá el personal de
+      camareras y de mantenimiento el ingreso a las habitaciones para el aseo
+      diario y de reparaciones si es el caso. b. OBLIGACIONES DEL HOTEL. 1.
+      Prestar un servicio de calidad conforme a lo ofrecido y respetar las
+      tarifas negociadas durante la reserva o al momento del Check-in . 2.
+      Respetar la privacidad del Huésped y sus acompañantes. 3. No divulgar la
+      identificación de Huésped y sus acompañantes a personas particulares.
+      SEPTIMA- MINIBARES. El HOTEL EMBAJADOR DEL LLANO dispondrá de minibares en
+      cada habitación y éstos serán entregados en forma completa por los
+      botones. Es obligación del (los) Huésped (es) revisar la totalidad y
+      calidad de los productos del minibar antes de la firma del inventario de
+      Minibar. A la firma del inventario de Minibar se está dando por entendido
+      que el Huésped reviso todos su elementos y los faltantes o daños al
+      momento del check-ont serán cargados a su cuenta. Queda prohibido el
+      ingreso de bebidas y alimentos a las instalaciones del hotel. OCTAVA-
+      TERMINACION DEL CONTRATO- El presente contrato se termina cuando: a. Por
+      vencimiento de los plazos pactados. b. Por incumplimiento alguno a las
+      obligaciones de las partes. c. Cuando al no tener el tiempo de permanencia
+      estipulado, hayan trascurrido las 24 horas del día hotelero. PARAGRAFO.-
+      Cuando a solicitud del Huésped se termina en forma anticipada al presente
+      Contrato, debe mediar un tiempo prudencial o causa razonable como una
+      calamidad doméstica, enfermedad del Huésped, fallas en el transporte o
+      vías de transporte, emergencias sanitarías del grupo u otras consideras
+      como justas para el Hotel, o de lo contrario el Huésped deberá pagar el
+      Hotel el valor acordado. NOVENA DESACUERDOS. Al existir desacuerdos entre
+      el Huésped y el Hotel se procederá a suspender el servicio y el equipaje
+      será guardado en un depósito seguro sin responsabilidad del Hotel hasta
+      que se solucione la controversia o cese el plazo para retirarlo (30 días).
+      Si el desacuerdo no tuviese solución entre los afectados se trasladará el
+      caso a un tribunal de conciliación (Cámara de Comercio, Conalbos, entre
+      otros.) DÉCIMA – PRUEBA Y PERFECCIONAMIENTO DEL CONTRATO - El presente
+      Contrato de Servicio de hospedaje se prueba mediante la Tarjeta de
+      Registro Hotelero expedida por el Hotel Embajador del Llano firmada por el
+      Huésped, haciendo constar de ésta forma que acepta estadía dentro del
+      Hotel serán trasladados a una factura con los requisitos de ley (Art 617
+      E.T.) para que ésta cumpla su mérito jurídico. DÉCIMA PRIMERA- SEGUROS, El
+      HOTEL EMBAJADOR DEL LLANO tiene a su disposición una póliza de Seguros
+      para cubrir los riesgos y eventos posibles que atenten contra la seguridad
+      de Huésped, sus acompañantes o sus pertenencias, para lo cual tendrá como
+      requisito esencial denunciar ante el Recepcionista los tipos de equipos
+      que ingresan al Hotel juntos con sus números de series y la identificación
+      completa de sus acompañantes. Por tratarse de la seguridad del Huésped de
+      sus acompañantes, de su equipo y del buen nombre del Hotel el seguro
+      Hotelero no es optativo. Cada noche de hospedaje es causal de la prima de
+      seguro diaria. PARÁGRAFO 1. Si el Huésped no reporta los objetos o equipos
+      de valor al momento del check-in, se exonera al HOTEL EMBAJADOR DEL LLANO
+      de toda pérdida o deterioro. Igualmente si los objetos de valor amparados
+      por la Póliza de Seguro Hotelero se encuentra fuera de lugar destinado
+      para su depósito y seguridad (Cajillas de seguridad) estarán bajo la
+      responsabilidad y riesgo del Huésped. PARÁGRAFO 2. –En todo caso la
+      responsabilidad del Hotel EMBAJADOR DEL LLANO se limita a la
+      responsabilidad de la aseguradora y a los riesgos y/o eventos que la
+      póliza cubra. El Hotel no se hace responsable de pérdida o daños de
+      objetos de valor dejados dentro de los vehículos estacionados en los
+      parqueaderos. DÉCIMA SEGUNDA- DISPOSICIONES FINALES. El Huésped autoriza
+      al Hotel para diligenciar los espacios en blanco de la tarjeta de registro
+      hotelero como complemento de información necesaria. Queda prohibido el
+      ingreso de animales y/o mascotas a las instalaciones del Hotel. EL HOTEL
+      EMBAJADOR DEL LLANO se reserva el derecho de Admisión. ADVERTENCIA: En
+      desarrollo en lo dispuesto en el Art. 17 de la ley EL 679 de 2001 el HOTEL
+      EMBAJADOR DEL LLANO advierte al Huésped que la explotación y el abuso
+      sexual de menores de edad en el país son castigados penal y civilmente
+      conforme a las disposiciones legales vigentes. LEY ESTATUTARIA 1581 DE
+      2012 Reglamentada parcialmente por el decreto nacional 1377 de 2013. Por
+      la cual se dictan disposiciones generales para la protección de datos
+      personales. la presente ley tiene por objeto desarrollar el derecho
+      constitucional que tienen todas las personas a conocer, actualizar y
+      rectificar las informaciones que se hayan recogido sobre ellas en bases de
+      datos o archivos, y los demás derechos, libertades y garantías
+      constitucionales a que se refiere el artículo 15 de la constitución
+      política; así como el derecho a la información consagrado en el artículo
+      20 de la misma. LEY 1336 DE 2009 Por medio de la cual se adiciona y
+      robustece la ley 679 de 2001, de lucha contra la explotación, la
+      pornografía y el turismo sexual con niños, niñas y adolescentes.
+                </div>
+            </div>
+
+        </t>
+    </template>
+
+
+    <!--    <template id="report_reservation_style" inherit_id="report.style">
+            <xpath expr=".">
+                <t>
+                    .field_row{
+                border-top: 1px solid;
+                padding-top:10px
+                }
+                .register_col{
+                border: 1px solid;
+                }
+                .contract{
+                font-size:8px;-webkit-column-count: 2;-moz-column-count: 2;column-count: 2;-webkit-column-gap: 20px;-moz-column-gap: 20px; column-gap: 20px;
+                }
+                </t>
+            </xpath>
+        </template>-->
+    <template id="report_reservation">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="hotel_personalizado.report_reservation_document" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>
