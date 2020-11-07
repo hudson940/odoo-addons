@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>getValoracion</title>
+ <link rel="stylesheet" href="ws_doc.css">
+ <script src="jquery-3.js"></script>
+ <script src="es_data/estructura.js"></script>
+
+<script>
+$( document ).ready(function() {
+	
+	/*****************************************************************************************************/
+	method.titulo='getValoracion';
+	method.metodo='String getValoracion (String user, String pass, String[] data)';
+	method.pie='Devuelve la valoracion de un servicio nacional en base al tipo de envío y los códigos postales de origen y destino. Puede indicarse la tarifa a aplicar.'
+
+	method.entrada=[ 
+	            	['user','Usuario suministrado por NACEX'],
+	            	['pass','Contraseña en formato MD5 suministrado por NACEX'],
+	            	['data','Array de string con los parámetros de la información de la expedición.']
+				  ];
+	
+	method.data=[ 
+	            	['cp_rec','Código postal de recogida (origen)', '8','obligatorio'],
+	            	['cp_ent','Código postal de entrega (destino)', '8','obligatorio'],
+	            	['tip_ser','Tipo de Servicio nacional [01 (Nacex 10H), 02 (Nacex 13H), etc)', '2','obligatorio'],
+	            	['tip_env','Tipo de envío nacional (0 = Docs / 1 = Bag / 2 = Paq)', '1','obligatorio'],
+	            	['kil','Peso en kilos. Necesario cuando se indica el tipo de envío como PAQ o muestra (formateado como 5.3)', '5.3',''],
+	            	['tarifa','Tarifa a aplicar. Si se omite éste parámetro y los dos siguientes (del_cli y num_cli) se aplicará la tarifa por defecto', '20',''],
+	            	['del_cli','Agencia. Si se omite el parámetro "tarifa" y se informa de este parámetro y de "num_cli" se intentará recuperar la tarifa para este abonado registrada en el sistema.', '4',''],
+	            	['num_cli','Cliente. Si se omite el parámetro "tarifa" y se informa de este parámetro y de "del_cli" se intentará recuperar la tarifa para este abonado registrada en el sistema.', '5',''],
+	            	['alto','Alto del bulto en cm.', '4',''],
+	            	['ancho','Ancho del bulto en cm.', '4',''],
+	            	['largo','Largo del bulto en cm.', '4','']
+				  ];
+	
+
+	method.salida=[	
+	           		'Nombre del servicio',
+	           		'Precio del servicio + excesos, calculado en euros'
+	           	];
+   	
+	method.gets= [  
+	          	urlWS+'method=getValoracion&data=cp_ent=08908|cp_rec=15001|tip_ser=01|tip_env=2|kil=1'+credencialesWS, 
+	           	urlWS+'method=getValoracion&data=08908|15001|01|2|1'+credencialesWS 
+	           	];
+	method.GetResp=[ 
+	            	'NACEX 10:00H|23.24' 
+	              ];	       	 	 
+
+	method.soap='<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:soap/types">   <soapenv:Header/>   <soapenv:Body>   <typ:getValoracion>   <String_1>[Su usuario]</String_1>   <String_2>[Su MD5(password)]</String_2>   <arrayOfString_3>del_cli=9992</arrayOfString_3>   <arrayOfString_3>num_cli=00003</arrayOfString_3>   <arrayOfString_3>cp_ent=08908</arrayOfString_3>   <arrayOfString_3>cp_rec=08908</arrayOfString_3>   <arrayOfString_3>tip_ser=01</arrayOfString_3>   <arrayOfString_3>tip_env=2</arrayOfString_3>   <arrayOfString_3>kil=1</arrayOfString_3>   </typ:getValoracion>   </soapenv:Body>   </soapenv:Envelope>';
+	method.soapResp='<env:Envelope xmlns:enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns0="urn:soap/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">   <env:Body>   <ns0:getValoracionResponse>   <result>NACEX 10:00H</result>   <result>10.54</result>   </ns0:getValoracionResponse>   </env:Body>   </env:Envelope>';
+
+	document.getElementById('output1').innerHTML =tablaMetodoData(method);
+
+});
+
+</script> 
+</head>
+<body>
+
+<div id="output1"> <h1>getValoracion</h1><table class="TBL_entrada"><thead><tr><td colspan="2"><h3>String getValoracion (String user, String pass, String[] data)</h3></td></tr><tr><td colspan="2"><h4>Parámetros de entrada</h4></td></tr><tr><td>Campo</td><td>Descripción</td></tr></thead><tfoot><tr><td colspan="2">Devuelve
+ la valoracion de un servicio nacional en base al tipo de envío y los 
+códigos postales de origen y destino. Puede indicarse la tarifa a 
+aplicar.</td></tr></tfoot><tbody>    <tr><td>user</td><td>Usuario suministrado por NACEX</td></tr>    <tr><td>pass</td><td>Contraseña en formato MD5 suministrado por NACEX</td></tr>    <tr><td>data</td><td>Array de string con los parámetros de la información de la expedición.</td></tr> </tbody></table><table class="TBL_data"><thead><tr><td colspan="3"><h4>Desglose del array data</h4></td></tr><tr><td>clave</td><td>Descripción</td><td>Máx. Long.</td></tr></thead><tfoot><tr><td colspan="3"></td></tr></tfoot><tbody>    <tr class="obligatorio"><td>cp_rec</td><td>Código postal de recogida (origen)</td><td>8</td></tr>    <tr class="obligatorio"><td>cp_ent</td><td>Código postal de entrega (destino)</td><td>8</td></tr>    <tr class="obligatorio"><td>tip_ser</td><td>Tipo de Servicio nacional [01 (Nacex 10H), 02 (Nacex 13H), etc)</td><td>2</td></tr>    <tr class="obligatorio"><td>tip_env</td><td>Tipo de envío nacional (0 = Docs / 1 = Bag / 2 = Paq)</td><td>1</td></tr>    <tr class=""><td>kil</td><td>Peso en kilos. Necesario cuando se indica el tipo de envío como PAQ o muestra (formateado como 5.3)</td><td>5.3</td></tr>    <tr class=""><td>tarifa</td><td>Tarifa a aplicar. Si se omite éste parámetro y los dos siguientes (del_cli y num_cli) se aplicará la tarifa por defecto</td><td>20</td></tr>    <tr class=""><td>del_cli</td><td>Agencia.
+ Si se omite el parámetro "tarifa" y se informa de este parámetro y de 
+"num_cli" se intentará recuperar la tarifa para este abonado registrada 
+en el sistema.</td><td>4</td></tr>    <tr class=""><td>num_cli</td><td>Cliente.
+ Si se omite el parámetro "tarifa" y se informa de este parámetro y de 
+"del_cli" se intentará recuperar la tarifa para este abonado registrada 
+en el sistema.</td><td>5</td></tr>    <tr class=""><td>alto</td><td>Alto del bulto en cm.</td><td>4</td></tr>    <tr class=""><td>ancho</td><td>Ancho del bulto en cm.</td><td>4</td></tr>    <tr class=""><td>largo</td><td>Largo del bulto en cm.</td><td>4</td></tr> </tbody></table> <table class="TBL_salida"> <thead> 	<tr><td colspan="2"><h4>Retorno ordenado de parámetros de salida o error, <a href="https://pda.nacex.com/nacex_ws/doc/es.codigos.html#erroresWS">ver códigos de error</a></h4></td></tr><tr><td>Descripción</td></tr>	 </thead>	  <tbody>    <tr><td>Nombre del servicio</td></tr>    <tr><td>Precio del servicio + excesos, calculado en euros</td></tr>	  </tbody> </table>	 <br><h3>GET</h3><h5>Petición (clave=valor)</h5>	 <pre><xmp>http://pda.nacex.com/nacex_ws/ws?method=getValoracion&amp;data=cp_ent=08908|cp_rec=15001|tip_ser=01|tip_env=2|kil=1&amp;user=[Su usuario]&amp;pass=[Su MD5(password)]</xmp></pre><h5>Petición (posición)</h5>	 <pre><xmp>http://pda.nacex.com/nacex_ws/ws?method=getValoracion&amp;data=08908|15001|01|2|1&amp;user=[Su usuario]&amp;pass=[Su MD5(password)]</xmp></pre><h5>Respuesta</h5>	 <pre><xmp>NACEX 10:00H|23.24</xmp></pre><h3>SOAP</h3><h4>Petición</h4><pre><xmp>&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="urn:soap/types"&gt;
+&lt;soapenv:Header/&gt;
+&lt;soapenv:Body&gt;
+&lt;typ:getValoracion&gt;
+&lt;String_1&gt;[Su usuario]&lt;/String_1&gt;
+&lt;String_2&gt;[Su MD5(password)]&lt;/String_2&gt;
+&lt;arrayOfString_3&gt;del_cli=9992&lt;/arrayOfString_3&gt;
+&lt;arrayOfString_3&gt;num_cli=00003&lt;/arrayOfString_3&gt;
+&lt;arrayOfString_3&gt;cp_ent=08908&lt;/arrayOfString_3&gt;
+&lt;arrayOfString_3&gt;cp_rec=08908&lt;/arrayOfString_3&gt;
+&lt;arrayOfString_3&gt;tip_ser=01&lt;/arrayOfString_3&gt;
+&lt;arrayOfString_3&gt;tip_env=2&lt;/arrayOfString_3&gt;
+&lt;arrayOfString_3&gt;kil=1&lt;/arrayOfString_3&gt;
+&lt;/typ:getValoracion&gt;
+&lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</xmp></pre><h4>Respuesta</h4><pre><xmp>&lt;env:Envelope xmlns:enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns0="urn:soap/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+&lt;env:Body&gt;
+&lt;ns0:getValoracionResponse&gt;
+&lt;result&gt;NACEX 10:00H&lt;/result&gt;
+&lt;result&gt;10.54&lt;/result&gt;
+&lt;/ns0:getValoracionResponse&gt;
+&lt;/env:Body&gt;
+&lt;/env:Envelope&gt;</xmp></pre><hr></div>
+
+
+</body></html>

@@ -1,0 +1,256 @@
+table.TBL_entrada {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  border: 1px solid #FFFFFF;
+  width: 85%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.TBL_entrada td, table.TBL_entrada th {
+  border: 1px solid #FFFFFF;
+  padding: 3px 7px;
+}
+table.TBL_entrada tbody td {
+  font-size: 13px;
+}
+table.TBL_entrada tr:nth-child(even) {
+  background: #F5DC8A;
+}
+table.TBL_entrada thead {
+  background: #A47532;
+  border-bottom: 5px solid #FFFFFF;
+}
+table.TBL_entrada thead th {
+  font-size: 17px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: center;
+  border-left: 2px solid #FFFFFF;
+}
+table.TBL_entrada thead th:first-child {
+  border-left: none;
+}
+
+table.TBL_entrada tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+  background: #F59926;
+  border-top: 3px solid #444444;
+}
+table.TBL_entrada tfoot td {
+  font-size: 14px;
+}
+table.TBL_entrada tfoot .links {
+  text-align: right;
+}
+table.TBL_entrada tfoot .links a{
+  display: inline-block;
+  background: #A47532;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+table.TBL_salida {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  border: 1px solid #FFFFFF;
+  width: 85%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.TBL_salida td, table.TBL_salida th {
+  border: 1px solid #FFFFFF;
+  padding: 3px 7px;
+}
+table.TBL_salida tbody td {
+  font-size: 13px;
+}
+table.TBL_salida tr:nth-child(even) {
+  background: #D9F5AF;
+}
+table.TBL_salida thead {
+  background: #6AA419;
+  border-bottom: 5px solid #FFFFFF;
+}
+table.TBL_salida thead th {
+  font-size: 17px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: left;
+  border-left: 2px solid #FFFFFF;
+}
+table.TBL_salida thead th:first-child {
+  border-left: none;
+}
+
+table.TBL_salida tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+  background: #BAF55C;
+  border-top: 3px solid #444444;
+}
+table.TBL_salida tfoot td {
+  font-size: 14px;
+}
+table.TBL_salida tfoot .links {
+  text-align: right;
+}
+table.TBL_salida tfoot .links a{
+  display: inline-block;
+  background: #6AA419;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+
+table.TBL_data {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  border: 1px solid #FFFFFF;
+  width: 85%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.TBL_data td, table.TBL_data th {
+  border: 1px solid #FFFFFF;
+  padding: 3px 7px;
+}
+table.TBL_data tbody td {
+  font-size: 13px;
+}
+table.TBL_data tr:nth-child(even) {
+  background: #F5DC8A;
+}
+table.TBL_data thead {
+  background: #A47532;
+  border-bottom: 5px solid #FFFFFF;
+}
+table.TBL_data thead th {
+  font-size: 17px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: center;
+  border-left: 2px solid #FFFFFF;
+}
+table.TBL_data thead th:first-child {
+  border-left: none;
+}
+
+table.TBL_data tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+  background: #F59926;
+  border-top: 3px solid #444444;
+}
+table.TBL_data tfoot td {
+  font-size: 14px;
+}
+table.TBL_data tfoot .links {
+  text-align: right;
+}
+table.TBL_data tfoot .links a{
+  display: inline-block;
+  background: #A47532;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+h1{
+font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+padding: 3px 7px;
+border-bottom: 5px solid rgba(164,117,50,0.8);
+}
+
+h2{
+font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+padding: 3px 7px;
+border-bottom: 5px solid rgba(164,117,50,0.8);
+}
+
+h3{
+font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+padding: 3px 7px;
+border-bottom: 5px double rgba(164,117,50,0.8);
+}
+
+h4{
+font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+padding: 3px 7px;
+}
+h5{
+font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+padding: 3px 7px;
+}
+
+pre xmp {
+ background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid #f36d33;
+    color: #666;
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    max-width: 85%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: break-word;
+}
+
+p{
+	width: 90%;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+ul.menuUl {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 14%;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+
+}
+
+ul.menuUl li {
+  display: block;
+  color: #000;
+  padding: 4px 16px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ul.menuUl li.active {
+  background-color: #ff9800;
+  color: white;
+  cursor: auto;
+}
+
+ul.menuUl li:hover:not(.active) {
+  background-color: #eeb36a;
+  color: white;
+}
+
+.obligatorio {
+  font-weight: bold;
+}
+
+#logout  {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: #ff9800;
+  color: white;
+  cursor: pointer;
+  float: right;
+  text-decoration: none;
+  padding: 7px;;
+}

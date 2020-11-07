@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_nacex_odoo_integration_configuration_tree_view" model="ir.ui.view">
+        <field name="name">Nacex odoo Integraion Configuration</field>
+        <field name="model">nacex.odoo.configuration</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="user"/>
+                <field name="url_ws"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_nacex_odoo_integration_configuration_view" model="ir.ui.view">
+        <field name="name">Nacex odoo Integration configuration Form View</field>
+        <field name="model">nacex.odoo.configuration</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="test_connection" string="Probar Conexión" type="object" class="oe_highlight"/>
+                    <button name="import_config" string="Configurar" type="object" class="oe_highlight"/>
+                </header>
+                <sheet>
+                        <group string="Nacex Configuration" col="1">
+                            <field name="name" required="1"/>
+                            <field name="url_ws" widget="url" required="1"/>
+                            <field name="url_print"/>
+                            <field name="printer_model"/>
+                            <field name="user" required="1"/>
+                            <field name="password" required="1" password="True"/>
+                            <field name="agency"/>
+                            <field name="client"/>
+                        </group>
+                        <group string="Valores por defecto" col="1">
+                            <field name="packaging_type_id"
+                                   domain="[('package_carrier_type', '=', 'nacex')]" required="1"/>
+                            <field name="nacex_default_weight"/>
+                            <field name="nacex_defaulf_charge_type" required="1"/>
+                            <field name="nacex_default_refund_type" required="1"/>
+                            <field name="nacex_default_insurance_type" required="1"/>
+                            <field name="nacex_isurance_from_order_total"/>
+                            <field name="nacex_default_insurance_value" attrs="{'invisible':[('nacex_isurance_from_order_total','=', True)]}"/>
+                            <field name="nacex_default_alert_type"/>
+                            <field name="nacex_default_alert_mode"/>
+                        </group>
+
+                    <group>
+                        <field name="delivery_method_ids" context="{'default_delivery_type': 'nacex'}">
+                            <form>
+                                <group>
+                                    <field name="name"/>
+                                    <field name="delivery_type" invisible="1"/>
+                                    <field name="nacex_service" required="1"/>
+                                    <field name="integration_level"/>
+                                    <field name="website_published"/>
+                                    <field name="website_description"/>
+                                </group>
+
+                            </form>
+                            <tree>
+                                <field name="name"/>
+                                <field name="nacex_service"/>
+                                <field name="website_published"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

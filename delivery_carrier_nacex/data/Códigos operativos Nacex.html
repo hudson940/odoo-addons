@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>Códigos operativos Nacex</title>
+ <link rel="stylesheet" href="C%C3%B3digos%20operativos%20Nacex%20Archivos/ws_doc.css">
+ <script src="C%C3%B3digos%20operativos%20Nacex%20Archivos/jquery-3.js"></script>
+ <script src="C%C3%B3digos%20operativos%20Nacex%20Archivos/estructura.js"></script>
+ </head><body><input type="hidden" name="OCULTO"> 
+
+<script>
+$( document ).ready(function() {
+
+/*****************************************************************************************************/
+    codes.titulo='Estados de las recogidas y expediciones Nacex.';
+
+    codes.pie='Los envios nacex diferencian dos grupos de estados, recogidas (envío que no ha llegado a la agencia de origen) y expediciones (hasta que finaliza la entrega a su destinatario).';
+
+    codes.codigos=[
+               ['','<h4> Recogidas</h4><hr>', ''],
+                ['10','SOLICITADA', 'Recogida documentada.'],
+                /*['10','PENDIENTE', 'PEND: pendiente, gestión interna'],
+                ['11','PENDIENTE', 'PEND: pendiente, gestión interna'],
+                ['12','PENDIENTE', 'LEIDA: Leida por la agencia de recogida, gestión interna.'],*/
+                ['13','ACEPTADA', 'Recogida Aceptada.'],
+                /*['13','RECHAZADA', 'RECHAZA: Rechazada por la agencia de recogida.'],*/
+                ['14','DENEGADA', 'Denegada por la agencia de recogida.'],
+                /*['14','PENDIENTE', 'CONFIRM.: Aceptada por la agencia de recogida, gestión interna'],
+                ['15','ASIGNADA A MENSAJERO PARA RECOGER', 'ASIGNADA.: Asignada a un mensajero.'],*/
+                ['16','RECOGIDA', 'Recogida efectuada con éxito.'],
+                /*['17','INCIDENCIA RECOGIDA', 'SIN OK.: La recogida ha generado una incidencia y no se efectuará en esta ocasión'],*/
+                ['18','INCIDENCIA', 'La recogida ha generado una incidencia y no se efectuará en esta ocasión.'],
+                /*['18','No enviado', 'ELIMINA: La recogida se elimina del sistema'],*/
+                ['19','Sol. Sin OK', 'La recogida ha generado una incidencia de cierre y no se efectuará.'],
+               
+               ['','<h4> Expediciones</h4><hr>', ''],
+                ['1','ENTREGADO', 'La expedición se entregó al destinatario o punto de entrega.'],
+                /*['1','RECOGIDO', 'RECOG: Envío disponible para su gestión'],*/
+                ['2','REPARTO', 'Expedición cargada en vehiculo que entregará al destinatario o punto de recogida.'],
+                /*['2','TRANSITO', 'TRANSITO: Expedición viajando a destino'],*/
+                ['3','TRANSITO', 'Expedición viajando a destino.'],
+                /*['3','REPARTO', 'REPARTO: Expedición cargada en vehiculo que entregará al destinatario o punto de recogida'],*/              
+                ['4','INCIDENCIA', 'La expedición ha generado una incidencia.'],
+                /*['4','OK', 'OK: La expedición se entregó al destinatario o punto de entrega'],*/
+                ['5','Sol. Sin OK', 'La expedición tiene una incidencia de cierre.'],
+                ['9','ANULADA', 'La expedicón ha sido anulada.'],
+                ['10','SOLICITADA', 'Recogida documentada.'],
+                ['13','ACEPTADA', 'Recogida Aceptada.'],
+                /*['40','DISP.P.E.', 'La expedición se entregó en el punto de entrega indicado'],
+                ['41','ENTREGADO', 'El punto entregó La expedición al destinatario'],*/
+                ['<a href="es.codigos.html#incidencias">Ver incidencias</a>','INCIDENCIA', ''],
+                ['<a href="es.codigos.html#solsinOk">Ver incidencias de cierre</a>','SOL SIN OK', ''],
+                  ];
+
+    document.getElementById('estados').innerHTML =tablaCodigos(codes);
+
+  /*****************************************************************************************************/
+    codes.titulo='Estados de incidencia Nacex.';
+
+    codes.pie='Estos son los estados de incidencia que pueden presentar los envios Nacex.';
+
+    codes.codigos=[
+                ['','<h4> Incidencias en recogidas</h4><hr>', ''],
+                ['2001','AUSENTE CON AVISO', ''],
+                ['2002','DIRECCION INCORRECTA', ''],
+                ['2006','NO ABONA EL SERVICIO', ''],
+                ['2007','DESCONOCIDO', ''],
+                ['2011','PENDIENTES FACTURAS (DESTINOS ESPECIALES)', ''],
+                ['2012','AUSENTE SIN POSIBILIDAD DE DEJAR AVISO', ''],
+                ['2013','FALTAN DATOS', ''],
+                ['2014','EXPEDICION INCOMPLETA', ''],
+                ['2016','EMBALAJE INSUFICIENTE', ''],
+                ['2017','HORARIO DE RECOGIDA ACORDADO', ''],
+                ['2018','ROTURA', ''],
+                ['2019','INCLEMENCIAS METEOROLOGICAS', ''],
+                ['2021','ACCIDENTE DE CIRCULACION', ''],
+                ['2022','VEHICULO AVERIADO', ''],
+                ['2023','FESTIVO', ''],
+                ['2026','FALTA PERSONA DE CONTACTO', ''],
+                ['2028','CERRADO POR VACACIONES', ''],
+                ['2030','ROBO PARCIAL', ''],
+                ['2040','NO PREPARADO EL ENVÍO', ''],
+                ['2042','NO CONTESTA AL TELÉFONO', ''],
+                ['2045','EXISTE KILOMETRAJE', ''],
+                ['2054','REFERENCIA/BULTO NO RECOGIDO', ''],
+                ['2055','EMPRESA DESCONOCIDA', ''],
+                ['2056','PERSONA DESCONOCIDA', ''],
+                ['2058','TELEFONO INCORRECTO', ''],
+                ['','<h4> Respuestas de incidencias en recogidas </h4><hr>', ''],
+                ['4001','FACILITAMOS TELEFONO', ''],
+                ['4002','FACILITAMOS DATOS', ''],
+                ['4003','RECOGER EN/ NUEVA RECOGIDA EN/', ''],
+                ['4004','PERSONA DE CONTACTO SR/SRA:', ''], 
+                ['4005','VOLVER A ENTREGAR EN LA HORA INDICADA', ''],
+                ['4006','P.O DEL CLIENTE RECOGER EN PORTERÍA', ''],
+                ['4007','ANULADO RETORNO', ''],
+                ['4008','ANULADO REEMBOLSO', ''],
+                ['4009','P.O DEL CLIENTE RECOGER SIN FIRMAR', ''],
+                ['4011','RECOGIDA DADA DE BAJA', ''],
+                ['4015','RECOGIDA PARCIAL', ''],
+                ['4016','RECOGIDA DUPLICADA', ''],
+                ['4021','SI SE ACEPTA KILOMETRAJE', ''],
+                ['4022','NO SE ACEPTA KILOMETRAJE', ''],
+                ['','<h4> Incidencias en expediciones</h4><hr>', ''],
+                ['1001','AUSENTE CON AVISO', ''],
+                ['1002','DIRECCION INCORRECTA/NO ENCONTRADA', ''],
+                ['1003','NO PREPARADO REEMBOLSO / RETORNO', ''],
+                ['1004','RECOGERA EN LA OFICINA', ''],
+                ['1005','NO QUIERE EL ENVIO', ''],
+                ['1006','NO ABONA EL SERVICIO', ''],
+                ['1008','ERROR DOCUMENTACION / ENCAJADO', ''],
+                ['1009','LLEGADA EN FECHA NO PREVISTA', ''],
+                ['1011','PENDIENTE DOCUMENTACION', ''],
+                ['1012','AUSENTE SIN POSIBILIDAD DE DEJAR AVISO', ''],
+                ['1013','FALTAN DATOS', ''],
+                ['1016','EMBALAJE INSUFICIENTE', ''],
+                ['1017','HORARIO DE ENTREGA ACORDADO', ''],
+                ['1018','ROTURA', ''],
+                ['1019','INCLEMENCIAS METEOROLOGICAS', ''],
+                ['1021','ACCIDENTE DE CIRCULACION', ''],
+                ['1022','VEHICULO AVERIADO', ''],
+                ['1023','FESTIVO', ''],
+                ['1025','NO FIRMA CONFORME', ''],
+                ['1026','FALTA PERSONA DE CONTACTO', ''],
+                ['1027','RETENIDO / NO PASAN A RECOGER', ''],
+                ['1028','CERRADO POR VACACIONES', ''],
+                ['1030','ROBO PARCIAL', ''],
+                ['1032','RETENIDO EN ADUANAS ', ''],
+                ['1041','RETORNO ACORDADO', ''],
+                ['1042','NO CONTESTA TELEFONO', ''],
+                ['1043','ANULADO RETORNO', ''],
+                ['1044','ENVIADO SMS/EMAIL A DESTINATARIO', ''],
+                ['1045','EXISTE KILOMETRAJE', ''],
+                ['1046','EN REPARTO NO ACORDADO', ''],
+                ['1048','NEGOCIO CERRADO', ''],
+                ['1049','SOLUCION PENDIENTE DE AUTORIZACION', ''],
+                ['1050','SOLICITUD AUTORIZACION ENTREGA EN NXSHOP', ''],
+                ['1051','DESTINOS ESPECIALES EN TRANSITO', ''],
+                ['1052','SOLICITUD AUTORIZACION DE DESPACHO', ''],
+                ['1053','TRAMITADA AUTORIZACION DESPACHO', ''],
+                ['1054','REFERENCIA/ BULTO NO ENTREGADO', ''],
+                ['1055','EMPRESA DESCONOCIDA', ''],
+                ['1056','PERSONA DESCONOCIDA', ''],
+                ['1057','ROBO PENDIENTE DE CONFIRMACIÓN', ''],
+                ['1058','TELEFONO INCORRECTO', ''],
+                ['1060','ERROR DE ENLACE EN EL TRÁNSITO', ''],
+                ['1061','FALTA DE ENVÍO EN DESTINO INTERNACIONAL', ''],
+                ['1062','EMBALAJE DETERIORADO', ''],
+                ['1063','RETRASO 24H ENLACE EN TRÁNSITO', ''],
+                ['1065','FESTIVO EN DESTINO', ''],
+                ['1066','REEXPEDICIÓN POR ORDEN DESTINATARIO', ''],
+                ['1067','DESTRUIDO', ''],
+                ['1068','INFORMACIÓN FACILITADA AGENCIA DESTINO', ''],
+                ['1069','EN TRÁNSITO INTERNO EN PAIS DE DESTINO', ''],
+                ['1070','FESTIVIDAD EN PAISES DE TRÁNSITO', ''],
+                ['1071','HUELGA CONTROLADORES AEREOS', ''],
+                ['1072','ALMACENADO EN HUB', ''],
+                ['1073','AUTORIZACIÓN ENTREGA VECINO / BUZÓN / NO REQUIERE FIRMA', ''],
+                ['1074','BULTO NO ENTREGADO. OK INCORRECTO', ''],
+                ['1075','ENVÍO AFECTADO POR HUELGA', ''],
+                ['1076','DEMORADO POR CONFLICTO / EVENTO', ''],
+                ['1077','SERVICIO ESPECIAL PENDIENTE DE AUTORIZACIÓN', ''],
+                ['1078','ENVÍO UBICADO EN PUNTO DE RECOGIDA', ''],
+                ['1079','FALTA CÓDIGO DE ACCESO', ''],
+                ['1080','PENDIENTE DESPACHO DESTINATARIO', ''],
+                ['1081','PENDIENTE DESPACHO RTTE', ''],
+                ['1082','EN PROCESO DE ABANDONO ADUANERO', ''],
+                ['1083','EN ADUANAS PENDIENTE PAGO DE IMPUESTOS', ''],
+                    ['1093','SIN ESPACIO EN CASILLEROS', ''],
+                ['1200','DESTINATARIO RECOGERA EN OFICINA', ''],
+                ['1201','DESTINATARIO ENTREGA ACORDADA', ''],
+                    ['1202','CASILLERO RESERVADO', ''],
+                    ['1203','RESERVA DE CASILLERO NO ATENDIDA', ''],
+                    
+                ['1999','FUERZA MAYOR', ''],
+                ['','<h4> Respuestas de incidencias en expediciones </h4><hr>', ''],
+                ['5001','FACILITAMOS TELEFONO', ''],
+                ['5002','FACILITAMOS DATOS', ''],
+                ['5003','ENTREGAR EN / NUEVA ENTREGA EN:', ''],
+                ['5004','PERSONA DE CONTACTO SR/SRA:', ''], 
+                ['5005','VOLVER A ENTREGAR EN LA HORA INDICADA', ''],
+                ['5006','P.O. CLIENTE ENTREGAR EN PORTERIA/BUZON', ''],
+                ['5007','ANULADO RETORNO', ''],
+                ['5008','ANULADO REEMBOLSO', ''],
+                ['5009','P.O. CLIENTE ENTREGAR SIN FIRMAR', ''],
+                ['5010','MODIFICADO PORTES PAGADOS O 3ª CIUDAD', ''],
+                ['5011','ALBARAN DADO DE BAJA', ''],
+                ['5012','PASAMOS ALBARAN MODIFICADO', ''],
+                ['5013','P.O. CLIENTE DEVOLVER A ORIGEN', ''],
+                ['5014','P.O. CLIENTE NO DEVOLVER', ''],
+                ['5015','ENTREGA PARCIAL', ''],
+                ['5016','EXPEDICION DUPLICADA', ''],
+                ['5017','P.O CLIENTE RETENER 30 DÍAS', ''],
+                ['5018','P.O CLIENTE REEXPEDIR', ''],
+                ['5019','CONFIRMACION DE SALIDA', ''],
+                ['5020','RECOGIDO RETORNO', ''],
+                ['5021','SI SE ACEPTA KILOMETRAJE', ''],
+                ['5022','NO SE ACEPTA KILOMETRAJE', ''],
+                ['5023','ROBO COMUNICADO AL CLIENTE', ''],
+                ['5024','PERDIDA COMUNICADA AL CLIENTE', ''],
+                ['5025','HORARIO CONCERTADO (9 EUR)', ''],
+                ['5026','PDTE. DOC. POR PARTE CLIENTE', ''],
+                ['5027','ROTURA COMUNICADA AL CLIENTE', ''],
+                ['5028','RECOGERA EN OFICINA', ''],
+                ['5029','P.O. CLIENTE DEVOLVER AL 3ª CIUDAD', ''],
+                ['5030','RESP. INFORMACIÓN FALLO PUENTE / FALTA ENVÍO', ''],
+                ['5033','INCIDENCIA GESTIONADA DPTO. OPERACIONES', ''],
+                ['5034','SOLICITUD DE INFORMACIÓN FALLO PUENTE / FALTA DE ENVÍO', ''],
+                ['5035','AUTORIZACION A NUEVA ENTREGA', ''],
+                ['5036','ENVIO RETENIDO EN ADUANAS', ''],
+                ['5050','AUTORIZAMOS ENTREGA EN NXSHOP', ''],
+                ['5051','NO AUTORIZAMOS ENTREGA EN NXSHOP', ''],
+                ['5052','SÍ SE AUTORIZA', ''],
+                ['5053','NO SE AUTORIZA', ''],
+                ['5060','ERROR ENLACE NOTIFICADO', ''],
+                ['5061','FALTA DE ENVÍO INTERNACIONAL NOTIFICADA', ''],
+                ['5062','DETERIORO NOTIFICADO', ''],
+                ['5063','RETRASO NOTIFICADO', ''],
+                ['5065','FESTIVO NOTIFICADO', ''],
+                ['5066','REEXPEDICIÓN NOTIFICADA', ''],
+                ['5067','ACEPTAMOS DESTRUCCIÓN', ''],
+                ['5070','FESTIVIDAD NOTIFICADA', ''],
+                ['5071','HUELGA NOTIFICADA', ''],
+                ['5073','POR ORDEN CLIENTE ENTREGAR VECINO / BUZÓN / NO REQUIERE FIRM', ''],
+                ['5075','AFECTACIÓN NOTIFICADA', ''],
+                ['5076','DEMORA NOTIFICADA', ''],
+                ['5077','AUTORIZACIÓN SERVICIO ESPECIAL', ''],
+                ['5078','RECOGERÁ EN PUNTO', ''],
+                ['5079','CÓDIGO DE ACCESO FACILITADO', ''],
+                ['5082','DEJAR EN ABANDONO', '']                  
+                                  ];
+
+    document.getElementById('incidencias').innerHTML =tablaCodigos(codes);
+                                          
+/*****************************************************************************************************/
+    codes.titulo='Estados de incidencia de cierre Nacex.';
+
+    codes.pie='Estos estados de incidencia informan que no se podrá recoger o entregar el envío. Finalizan la operativa del envío Nacex.';
+
+    codes.codigos=[
+                ['','<h4> Recogidas</h4><hr>', ''],
+                ['2047','RECOGIDA SIN SOLUCION', ''],
+                ['','<h4> Expediciones</h4><hr>', ''],
+                ['1024','DEVOLUCION A ORIGEN', ''],
+                ['1031','ROBO TOTAL', ''],
+                ['1034','EXPEDICION DUPLICADA', ''],
+                ['1036','REEXPEDIDO POR INCIDENCIA', ''],
+                ['1037','PERDIDA', ''],
+                ['1038','P.O. CLIENTE, NO DEVOLVER', ''],
+
+                  ];
+
+
+    document.getElementById('solsinOk').innerHTML =tablaCodigos(codes);
+    /*****************************************************************************************************/
+    codes.titulo='Envases España, Portugal y Andorra';
+
+    codes.pie='Tipos de envase disponibles. No todos los servicios disponen de todos los envases detallados aquí';
+
+    codes.codigos=[
+                    ['0','Docs', 'Documentos, papel'],
+                    ['1','Bag', 'Bolsa de envío Nacex normalizada.'],
+                    ['2','Pag', 'Caja de cartón, varias medidas']
+                  ];
+
+    document.getElementById('envasesN').innerHTML =tablaCodigos(codes);
+
+    /*****************************************************************************************************/
+    codes.titulo='Envases resto de paises';
+
+    codes.pie='Tipos de envases internacionales disponibles. No todos los servicios disponen de todos los envases detallados aquí';
+
+    codes.codigos=[
+                    ['D','Documentos', 'Documentos, papel'],
+                    ['M','Muestras', 'Caja de cartón, varias medidas.'],
+
+                  ];
+
+    document.getElementById('envasesI').innerHTML =tablaCodigos(codes);
+
+    /*****************************************************************************************************/
+    codes.titulo='Servicios España, Portugal y Andorra';
+
+    codes.pie='Listados de servicios disponibles en Nacex';
+
+    codes.codigos=[
+                    ['01','NACEX 10:00H',''],
+                    ['02','NACEX 12:00H',''],
+                    ['03','INTERDIA',''],
+                    ['04','PLUS BAG 1',''],
+                    ['05','PLUS BAG 2',''],
+                    ['06','VALIJA',''],
+                    ['07','VALIJA IDA Y VUELTA',''],
+                    ['08','NACEX 19:00H',''],
+                    ['09','PUENTE URBANO',''],
+                    ['10','DEVOLUCION ALBARAN CLIENTE',''],
+                    ['11','NACEX 08:30H',''],
+                    ['12','DEVOLUCION TALON',''],
+                    ['14','DEVOLUCION PLUS BAG 1',''],
+                    ['15','DEVOLUCION PLUS BAG 2',''],
+                    ['17','DEVOLUCION E-NACEX',''],
+                    ['21','NACEX SABADO',''],
+                    ['22','CANARIAS MARITIMO',''],
+                    ['24','CANARIAS 24H',''],
+                    ['26','PLUS PACK',''],
+                    ['27','E-NACEX',''],
+                    ['28','PREMIUM',''],
+                    ['29','NX-SHOP VERDE',''],
+                    ['30','NX-SHOP NARANJA',''],
+                    ['31','E-NACEX SHOP',''],
+                    ['33','C@MBIO',''],
+                    ['48','CANARIAS 48H',''],
+                    ['88','INMEDIATO',''],
+                    ['90','NACEX.SHOP',''],
+                    ['91','SWAP',''],
+                    ['95','RETORNO SWAP',''],
+                    ['96','DEV. ORIGEN',''],
+                  ];
+
+    document.getElementById('serviciosN').innerHTML =tablaCodigos(codes);
+
+/*****************************************************************************************************/
+    codes.titulo='Frecuencias';
+
+    codes.pie='Frecuencias disponibles en sevicios Interdia y Puente Urbano.';
+
+    codes.codigos=[
+                    ['1','Interdía o Puente Urbano: frecuencia 1 (mañana)',''],
+          ['2','Interdía o Puente Urbano: frecuencia 2 (tarde)',''],
+          ['8','Puente urbano nocturno.',''],
+          ['9','Interdía aéreo.','']
+                  ];
+
+    document.getElementById('frecuencia').innerHTML =tablaCodigos(codes);
+    /*****************************************************************************************************/
+    codes.titulo='Servicios resto de paises';
+
+    codes.pie='Listados de servicios internacionales disponibles en Nacex';
+
+    codes.codigos=[
+                    ['E','EURONACEX TERRESTRE',''],
+                    ['F','SERVICIO AEREO',''],
+                    ['G','EURONACEX ECONOMY',''],
+                    ['H','PLUSPACK EUROPA','']
+                  ];
+
+    document.getElementById('serviciosI').innerHTML =tablaCodigos(codes);
+
+
+    /*****************************************************************************************************/
+    codes.titulo='Tipos de cobro';
+
+    codes.pie='Indica quién se hace cargo del importe del servicio de transporte.';
+
+    codes.codigos=[
+                    ['O','Origen','Factura la agencia origen del envío'],
+                    ['D','Destino','Factura la agencia de entrega del envío'],
+                    ['T','Tercera','Factura una tercera agencia']
+                  ];
+
+    document.getElementById('cobros').innerHTML =tablaCodigos(codes);
+  
+  /*****************************************************************************************************/
+    codes.titulo='Tipos de reembolso o adelanto';
+
+    codes.pie='Indica si el envío requiere el servicio complementario de pago a la entrega o a la recogida.';
+
+    codes.codigos=[
+                    ['N','No','No se solicita el servicio complemntario, por defecto es el valor que aplica el WS.'],
+          ['O','Origen','Servicio complementario de Reembolso a cargo de la agencia de Origen'],
+                    ['D','Destino','Servicio complementario de Reembolso a cargo de la agencia de Destino'],
+                    ['A','Adelanto','Adelanto del importe indicado, pago en la recogida. ']
+                  ];
+
+    document.getElementById('ree_ade').innerHTML =tablaCodigos(codes);
+  /*****************************************************************************************************/
+    codes.titulo='Estados del reembolso o adelanto';
+
+    codes.pie='Indica si el envío requiere el servicio complementario de pago a la entrega o a la recogida.';
+
+    codes.codigos=[
+                    ['P','Pendiente','Pendiente de gestionar'],
+          ['T','Tramite','Iniciada la gestión del reembolso/ adelanto. '],
+                    ['E','Emitiendo talón o transferencia','Gestión de pago en curso'],
+                    ['D','Emitido','Emitido pago']
+          
+                  ];
+
+    document.getElementById('estado_ree_ade').innerHTML =tablaCodigos(codes);
+     
+  /*****************************************************************************************************/
+    codes.titulo='Tipos de Aduana';
+
+    codes.pie='Indica si el envío requiere el servicio complementario de Aduana.';
+
+    codes.codigos=[
+                    ['N','No','No se solicita el servicio complementario, por defecto es el valor que aplica el WS.'],
+          ['O','Origen','Servicio complementario de Aduana a cargo de la agencia de origen'],
+                    ['D','Destino','Servicio complementario de Aduana a cargo de la agencia de entrega'],
+                    ['T','Tercera','Servicio complementario de Aduana a cargo de la agencia de cliente']
+                  ];
+
+    document.getElementById('aduana').innerHTML =tablaCodigos(codes);
+
+    /*****************************************************************************************************/
+    codes.titulo='Tipos de Gestión y Trámite';
+
+    codes.pie='Indica si el envío requiere el servicio complementario de Gestión y/o Trámite.';
+
+    codes.codigos=[
+                    ['N','No','No se solicita el servicio complementario, por defecto es el valor que aplica el WS.'],
+          ['O','Origen','Servicio complementario de gestión en origen'],
+                    ['D','Destino','Servicio complementario de gestión en entrega'],
+                    ['A','Ambos','Servicio complementario de gestión en origen y en entrega'],
+          ['R','Origen','Servicio complementario de trámite en origen'],
+                    ['E','Destino','Servicio complementario de trámite en entrega'],
+                    ['T','Ambos','Servicio complementario de trámite en origen y en entrega']
+                  ];
+
+    document.getElementById('gestion').innerHTML =tablaCodigos(codes);
+  
+  
+    /*****************************************************************************************************/
+    codes.titulo='Tipos de vehiculo';
+
+    codes.pie='Vehiculo recomendado.';
+
+    codes.codigos=[
+                    ['M','Motocicleta',''],
+          ['C','Coche','']
+                  ];
+
+    document.getElementById('vehiculo').innerHTML =tablaCodigos(codes);
+  
+      /*****************************************************************************************************/
+    codes.titulo='Tipos de seguro';
+
+    codes.pie='Sercicio complementario de seguros de mercancía.';
+
+    codes.codigos=[
+          ['N','No asegurado, valor por defecto. (Seguro básico hasta 3.000 €)',''],
+                    ['A','Mercancía general superior a 3.000 €',''],
+          ['B','Joyería',''],
+          ['C','Telefonía',''],
+          ['D','Mercancía especial/exclusiva',''],
+          ['E','Armas munición, accesorios y repuestos',''],
+          ['F','Loteria (en administración de lotería), cheques gourmet, entradas espectáculos, Smartbox','']
+                  ];
+
+    document.getElementById('seguros').innerHTML =tablaCodigos(codes);
+  /*****************************************************************************************************/
+    codes.titulo='Tipos de Prealerta';
+
+    codes.pie='Preealerta de recogida o entrega de un envío.';
+
+    codes.codigos=[
+                    ['N','No se avisa',''],
+          ['S','Envío de prealerta mediante un SMS',''],
+          ['E','Envío de prealerta mediante un EMAIL',''],
+          ['Z','Envío de prealerta mediante un SMS sin compromiso de entrega.',''],
+          ['M','Envío de prealerta mediante un EMAIL sin compromiso de entrega.','']
+                  ];
+
+    document.getElementById('tprealerta').innerHTML =tablaCodigos(codes);
+  /*****************************************************************************************************/
+    codes.titulo='Modos de Prealerta';
+
+    codes.pie='Modos de prealerta, indica cuando se gestionan.';
+
+    codes.codigos=[
+                    ['S','Standard: prealerta que se envia a las 18:00 de la fecha indicada como creación de la expedición',''],
+          ['P','Plus: prealerta Standard a la que se permite añadir texto de información (msg1)',''],
+          ['R','Reparto: prealerta que se envia una vez la expedición sale a reparto',''],
+          ['E','Reparto Plus: prealerta Reparto a la que se permite añadir texto de información (msg1)','']
+                  ];
+
+    document.getElementById('mprealerta').innerHTML =tablaCodigos(codes);
+  
+  /*****************************************************************************************************/
+    codes.titulo='Albaranes de cliente';
+
+    codes.pie='Servicio complementario de gestión de albaranes de cliente.';
+
+    codes.codigos=[
+                    ['N','Sin gestión.',''],
+          ['D','Digitalizar.',''],
+          ['A','Digitalizar y archivar/custodiar.',''],
+          ['R','Retorno del albarán al cliente.','']
+                  ];
+
+    document.getElementById('albCLientes').innerHTML =tablaCodigos(codes);
+  
+  /*****************************************************************************************************/
+    codes.titulo='Ealerta';
+
+    codes.pie='Servicio complementario de información al cliente Nacex de la recogida o entrega de su envío.';
+
+    codes.codigos=[
+                    ['N','Sin ealerta.',''],
+          ['S','Ealerta informada mediante un SMS.',''],
+          ['E','Ealerta informada mediante un correo electrónico.','']
+                  ];
+
+    document.getElementById('ealerta').innerHTML =tablaCodigos(codes);
+  
+  
+    /*****************************************************************************************************/
+    codes.titulo='Mensajes de error del WS';
+
+    codes.pie='El WS informa con un código y un mensaje descriptivo del error que se ha producido al gestionar su petición.';
+
+    codes.codigos=[
+                    ['5400','Solicitud mal formada.',''],
+          ['5401','Usuario inválido.',''],
+          ['5403','Método no autorizado.',''],
+          ['5404','Sesión inválida. Debe autenticarse usando el método "login".',''],
+          ['5412','Parámetros inválidos [detalle_errores_validacion].',''],
+          ['5413','Información de parámetros incorrecta o insuficiente.',''],
+          ['5415','Este método no existe.',''],
+          ['5416','Los parámetros "user", "pass", "method" y/o "data" están ausentes y/o incorrectamente informados.',''],
+          ['5417','Se necesita un parámetro adicional.',''],
+          ['5418','El cambio de estado solicitado no se gestiona actualmente por este Web Service.',''],
+          ['5500','Error inesperado en el Web Service [detalle_error_inesperado].',''],
+          ['5501','Excepción en DAO [detalle_error_dao].',''],
+          ['5600','El motor de negocio lanzó una excepción [detalle_errores_motor].',''],
+          ['5601','Cliente inválido.',''],
+          ['5602','Usuario sin clientes.',''],
+          ['5610','Expedición inválida [detalle_errores_expedicion].',''],
+          ['5611','No existe expedición relacionada.',''],
+          ['5612','Hay más de una expedición relacionada. Por favor, usa el método getCodigosReferencia o getEstadoRecogida2 con el parámetro re_unica=S.',''],
+          ['5613','Expedición en Agencia. No puede imprimir etiquetas.',''],
+          ['5614','Expedición no modificable.',''],
+          ['5615','El tipo de servicio es incorrecto para una Expedición internacional.',''],
+          ['5616','El contenido debe estar informado para una Expedición internacional.',''],
+          ['5617','El valor declarado debe estar informado para una Expedición internacional.',''],
+          ['5618','El servicio complementario indicado no existe para una Expedición internacional.',''],
+          ['5619','Este método no admite servicios internacionales.',''],
+          ['5620','No existe el envío.',''],
+          ['5621','Punto de entrega Nacex Shop no disponible.',''],
+          ['5622','No se ha informado del parámetro shop_codigo para un servicio con punto de recogida.',''],
+          ['5623','No existen reembolsos con este criterio de búsqueda.',''],
+          ['5624','No existen expediciones con este criterio de búsqueda.',''],
+          ['5630','Excedido el número de bultos.',''],
+          ['5640','No existe recogida relacionada.',''],
+          ['5641','Recogida asignada a mensajero.',''],
+          ['5642','Esta recogida tiene Km. Debe autorizarla indicando acepto_km=S.',''],
+          ['5643','Horario de recogida incorrecto.',''],
+          ['5644','Imposible encontrar servicio válido.',''],
+          ['5645','Tipo prealerta no válido para el servicio indicado.',''],
+          ['5646','No existen albaranes de cliente.',''],
+          ['5650','No hay ninguna agencia con ese código postal.',''],
+          ['5651','No existe el código postal.',''],
+          ['5660','Esta autorización ya ha sido registrada.',''],
+          ['5661','Rango de fechas incorrecto o superior a lo establecido',''],
+          ['5662','El tipo de servicio no existe',''],
+          ['5663','Impresora incorrecta para la impresión de albaranes de cliente.',''],
+          ['5680','Excepción por error de formato.',''],
+          ['5681','Valor inválido.',''],
+          ['5682','Error de análisis sintáctico.',''],
+          ['5690','Excepción SQL en BBDD [detalle_error_bbdd].',''],
+          ['5691','Transacción fallida al intentar guardar o actualizar la expedición [detalle_error_bbdd]','']
+                  ];
+
+    document.getElementById('erroresWS').innerHTML =tablaCodigos(codes);
+
+  var ancla= $(location).attr("href").substr( $(location).attr("href").indexOf('#')+1);
+  if (ancla!= null)  
+    $('html, body').animate({ scrollTop: $("#"+ancla).offset().top}, 2000);
+ 
+
+});
+
+</script>
+
+
+<div id="estados"> <h1>Estados de las recogidas y expediciones Nacex.</h1><table class="TBL_entrada"><thead><tr><td>Código</td><td>Descripción</td><td>Detalle</td></tr></thead><tfoot><tr><td colspan="3">Los
+ envios nacex diferencian dos grupos de estados, recogidas (envío que no
+ ha llegado a la agencia de origen) y expediciones (hasta que finaliza 
+la entrega a su destinatario).</td></tr></tfoot><tbody>    <tr><td></td><td><h4> Recogidas</h4><hr></td><td></td></tr>    <tr><td>10</td><td>SOLICITADA</td><td>Recogida documentada.</td></tr>    <tr><td>13</td><td>ACEPTADA</td><td>Recogida Aceptada.</td></tr>    <tr><td>14</td><td>DENEGADA</td><td>Denegada por la agencia de recogida.</td></tr>    <tr><td>16</td><td>RECOGIDA</td><td>Recogida efectuada con éxito.</td></tr>    <tr><td>18</td><td>INCIDENCIA</td><td>La recogida ha generado una incidencia y no se efectuará en esta ocasión.</td></tr>    <tr><td>19</td><td>Sol. Sin OK</td><td>La recogida ha generado una incidencia de cierre y no se efectuará.</td></tr>    <tr><td></td><td><h4> Expediciones</h4><hr></td><td></td></tr>    <tr><td>1</td><td>ENTREGADO</td><td>La expedición se entregó al destinatario o punto de entrega.</td></tr>    <tr><td>2</td><td>REPARTO</td><td>Expedición cargada en vehiculo que entregará al destinatario o punto de recogida.</td></tr>    <tr><td>3</td><td>TRANSITO</td><td>Expedición viajando a destino.</td></tr>    <tr><td>4</td><td>INCIDENCIA</td><td>La expedición ha generado una incidencia.</td></tr>    <tr><td>5</td><td>Sol. Sin OK</td><td>La expedición tiene una incidencia de cierre.</td></tr>    <tr><td>9</td><td>ANULADA</td><td>La expedicón ha sido anulada.</td></tr>    <tr><td>10</td><td>SOLICITADA</td><td>Recogida documentada.</td></tr>    <tr><td>13</td><td>ACEPTADA</td><td>Recogida Aceptada.</td></tr>    <tr><td><a href="https://pda.nacex.com/nacex_ws/doc/es.codigos.html#incidencias">Ver incidencias</a></td><td>INCIDENCIA</td><td></td></tr>    <tr><td><a href="https://pda.nacex.com/nacex_ws/doc/es.codigos.html#solsinOk">Ver incidencias de cierre</a></td><td>SOL SIN OK</td><td></td></tr> </tbody></table><hr></div>
+<div id="incidencias"> <h1>Estados de incidencia Nacex.</h1><table class="TBL_entrada"><thead><tr><td>Código</td><td>Descripción</td><td>Detalle</td></tr></thead><tfoot><tr><td colspan="3">Estos son los estados de incidencia que pueden presentar los envios Nacex.</td></tr></tfoot><tbody>    <tr><td></td><td><h4> Incidencias en recogidas</h4><hr></td><td></td></tr>    <tr><td>2001</td><td>AUSENTE CON AVISO</td><td></td></tr>    <tr><td>2002</td><td>DIRECCION INCORRECTA</td><td></td></tr>    <tr><td>2006</td><td>NO ABONA EL SERVICIO</td><td></td></tr>    <tr><td>2007</td><td>DESCONOCIDO</td><td></td></tr>    <tr><td>2011</td><td>PENDIENTES FACTURAS (DESTINOS ESPECIALES)</td><td></td></tr>    <tr><td>2012</td><td>AUSENTE SIN POSIBILIDAD DE DEJAR AVISO</td><td></td></tr>    <tr><td>2013</td><td>FALTAN DATOS</td><td></td></tr>    <tr><td>2014</td><td>EXPEDICION INCOMPLETA</td><td></td></tr>    <tr><td>2016</td><td>EMBALAJE INSUFICIENTE</td><td></td></tr>    <tr><td>2017</td><td>HORARIO DE RECOGIDA ACORDADO</td><td></td></tr>    <tr><td>2018</td><td>ROTURA</td><td></td></tr>    <tr><td>2019</td><td>INCLEMENCIAS METEOROLOGICAS</td><td></td></tr>    <tr><td>2021</td><td>ACCIDENTE DE CIRCULACION</td><td></td></tr>    <tr><td>2022</td><td>VEHICULO AVERIADO</td><td></td></tr>    <tr><td>2023</td><td>FESTIVO</td><td></td></tr>    <tr><td>2026</td><td>FALTA PERSONA DE CONTACTO</td><td></td></tr>    <tr><td>2028</td><td>CERRADO POR VACACIONES</td><td></td></tr>    <tr><td>2030</td><td>ROBO PARCIAL</td><td></td></tr>    <tr><td>2040</td><td>NO PREPARADO EL ENVÍO</td><td></td></tr>    <tr><td>2042</td><td>NO CONTESTA AL TELÉFONO</td><td></td></tr>    <tr><td>2045</td><td>EXISTE KILOMETRAJE</td><td></td></tr>    <tr><td>2054</td><td>REFERENCIA/BULTO NO RECOGIDO</td><td></td></tr>    <tr><td>2055</td><td>EMPRESA DESCONOCIDA</td><td></td></tr>    <tr><td>2056</td><td>PERSONA DESCONOCIDA</td><td></td></tr>    <tr><td>2058</td><td>TELEFONO INCORRECTO</td><td></td></tr>    <tr><td></td><td><h4> Respuestas de incidencias en recogidas </h4><hr></td><td></td></tr>    <tr><td>4001</td><td>FACILITAMOS TELEFONO</td><td></td></tr>    <tr><td>4002</td><td>FACILITAMOS DATOS</td><td></td></tr>    <tr><td>4003</td><td>RECOGER EN/ NUEVA RECOGIDA EN/</td><td></td></tr>    <tr><td>4004</td><td>PERSONA DE CONTACTO SR/SRA:</td><td></td></tr>    <tr><td>4005</td><td>VOLVER A ENTREGAR EN LA HORA INDICADA</td><td></td></tr>    <tr><td>4006</td><td>P.O DEL CLIENTE RECOGER EN PORTERÍA</td><td></td></tr>    <tr><td>4007</td><td>ANULADO RETORNO</td><td></td></tr>    <tr><td>4008</td><td>ANULADO REEMBOLSO</td><td></td></tr>    <tr><td>4009</td><td>P.O DEL CLIENTE RECOGER SIN FIRMAR</td><td></td></tr>    <tr><td>4011</td><td>RECOGIDA DADA DE BAJA</td><td></td></tr>    <tr><td>4015</td><td>RECOGIDA PARCIAL</td><td></td></tr>    <tr><td>4016</td><td>RECOGIDA DUPLICADA</td><td></td></tr>    <tr><td>4021</td><td>SI SE ACEPTA KILOMETRAJE</td><td></td></tr>    <tr><td>4022</td><td>NO SE ACEPTA KILOMETRAJE</td><td></td></tr>    <tr><td></td><td><h4> Incidencias en expediciones</h4><hr></td><td></td></tr>    <tr><td>1001</td><td>AUSENTE CON AVISO</td><td></td></tr>    <tr><td>1002</td><td>DIRECCION INCORRECTA/NO ENCONTRADA</td><td></td></tr>    <tr><td>1003</td><td>NO PREPARADO REEMBOLSO / RETORNO</td><td></td></tr>    <tr><td>1004</td><td>RECOGERA EN LA OFICINA</td><td></td></tr>    <tr><td>1005</td><td>NO QUIERE EL ENVIO</td><td></td></tr>    <tr><td>1006</td><td>NO ABONA EL SERVICIO</td><td></td></tr>    <tr><td>1008</td><td>ERROR DOCUMENTACION / ENCAJADO</td><td></td></tr>    <tr><td>1009</td><td>LLEGADA EN FECHA NO PREVISTA</td><td></td></tr>    <tr><td>1011</td><td>PENDIENTE DOCUMENTACION</td><td></td></tr>    <tr><td>1012</td><td>AUSENTE SIN POSIBILIDAD DE DEJAR AVISO</td><td></td></tr>    <tr><td>1013</td><td>FALTAN DATOS</td><td></td></tr>    <tr><td>1016</td><td>EMBALAJE INSUFICIENTE</td><td></td></tr>    <tr><td>1017</td><td>HORARIO DE ENTREGA ACORDADO</td><td></td></tr>    <tr><td>1018</td><td>ROTURA</td><td></td></tr>    <tr><td>1019</td><td>INCLEMENCIAS METEOROLOGICAS</td><td></td></tr>    <tr><td>1021</td><td>ACCIDENTE DE CIRCULACION</td><td></td></tr>    <tr><td>1022</td><td>VEHICULO AVERIADO</td><td></td></tr>    <tr><td>1023</td><td>FESTIVO</td><td></td></tr>    <tr><td>1025</td><td>NO FIRMA CONFORME</td><td></td></tr>    <tr><td>1026</td><td>FALTA PERSONA DE CONTACTO</td><td></td></tr>    <tr><td>1027</td><td>RETENIDO / NO PASAN A RECOGER</td><td></td></tr>    <tr><td>1028</td><td>CERRADO POR VACACIONES</td><td></td></tr>    <tr><td>1030</td><td>ROBO PARCIAL</td><td></td></tr>    <tr><td>1032</td><td>RETENIDO EN ADUANAS </td><td></td></tr>    <tr><td>1041</td><td>RETORNO ACORDADO</td><td></td></tr>    <tr><td>1042</td><td>NO CONTESTA TELEFONO</td><td></td></tr>    <tr><td>1043</td><td>ANULADO RETORNO</td><td></td></tr>    <tr><td>1044</td><td>ENVIADO SMS/EMAIL A DESTINATARIO</td><td></td></tr>    <tr><td>1045</td><td>EXISTE KILOMETRAJE</td><td></td></tr>    <tr><td>1046</td><td>EN REPARTO NO ACORDADO</td><td></td></tr>    <tr><td>1048</td><td>NEGOCIO CERRADO</td><td></td></tr>    <tr><td>1049</td><td>SOLUCION PENDIENTE DE AUTORIZACION</td><td></td></tr>    <tr><td>1050</td><td>SOLICITUD AUTORIZACION ENTREGA EN NXSHOP</td><td></td></tr>    <tr><td>1051</td><td>DESTINOS ESPECIALES EN TRANSITO</td><td></td></tr>    <tr><td>1052</td><td>SOLICITUD AUTORIZACION DE DESPACHO</td><td></td></tr>    <tr><td>1053</td><td>TRAMITADA AUTORIZACION DESPACHO</td><td></td></tr>    <tr><td>1054</td><td>REFERENCIA/ BULTO NO ENTREGADO</td><td></td></tr>    <tr><td>1055</td><td>EMPRESA DESCONOCIDA</td><td></td></tr>    <tr><td>1056</td><td>PERSONA DESCONOCIDA</td><td></td></tr>    <tr><td>1057</td><td>ROBO PENDIENTE DE CONFIRMACIÓN</td><td></td></tr>    <tr><td>1058</td><td>TELEFONO INCORRECTO</td><td></td></tr>    <tr><td>1060</td><td>ERROR DE ENLACE EN EL TRÁNSITO</td><td></td></tr>    <tr><td>1061</td><td>FALTA DE ENVÍO EN DESTINO INTERNACIONAL</td><td></td></tr>    <tr><td>1062</td><td>EMBALAJE DETERIORADO</td><td></td></tr>    <tr><td>1063</td><td>RETRASO 24H ENLACE EN TRÁNSITO</td><td></td></tr>    <tr><td>1065</td><td>FESTIVO EN DESTINO</td><td></td></tr>    <tr><td>1066</td><td>REEXPEDICIÓN POR ORDEN DESTINATARIO</td><td></td></tr>    <tr><td>1067</td><td>DESTRUIDO</td><td></td></tr>    <tr><td>1068</td><td>INFORMACIÓN FACILITADA AGENCIA DESTINO</td><td></td></tr>    <tr><td>1069</td><td>EN TRÁNSITO INTERNO EN PAIS DE DESTINO</td><td></td></tr>    <tr><td>1070</td><td>FESTIVIDAD EN PAISES DE TRÁNSITO</td><td></td></tr>    <tr><td>1071</td><td>HUELGA CONTROLADORES AEREOS</td><td></td></tr>    <tr><td>1072</td><td>ALMACENADO EN HUB</td><td></td></tr>    <tr><td>1073</td><td>AUTORIZACIÓN ENTREGA VECINO / BUZÓN / NO REQUIERE FIRMA</td><td></td></tr>    <tr><td>1074</td><td>BULTO NO ENTREGADO. OK INCORRECTO</td><td></td></tr>    <tr><td>1075</td><td>ENVÍO AFECTADO POR HUELGA</td><td></td></tr>    <tr><td>1076</td><td>DEMORADO POR CONFLICTO / EVENTO</td><td></td></tr>    <tr><td>1077</td><td>SERVICIO ESPECIAL PENDIENTE DE AUTORIZACIÓN</td><td></td></tr>    <tr><td>1078</td><td>ENVÍO UBICADO EN PUNTO DE RECOGIDA</td><td></td></tr>    <tr><td>1079</td><td>FALTA CÓDIGO DE ACCESO</td><td></td></tr>    <tr><td>1080</td><td>PENDIENTE DESPACHO DESTINATARIO</td><td></td></tr>    <tr><td>1081</td><td>PENDIENTE DESPACHO RTTE</td><td></td></tr>    <tr><td>1082</td><td>EN PROCESO DE ABANDONO ADUANERO</td><td></td></tr>    <tr><td>1083</td><td>EN ADUANAS PENDIENTE PAGO DE IMPUESTOS</td><td></td></tr>    <tr><td>1093</td><td>SIN ESPACIO EN CASILLEROS</td><td></td></tr>    <tr><td>1200</td><td>DESTINATARIO RECOGERA EN OFICINA</td><td></td></tr>    <tr><td>1201</td><td>DESTINATARIO ENTREGA ACORDADA</td><td></td></tr>    <tr><td>1202</td><td>CASILLERO RESERVADO</td><td></td></tr>    <tr><td>1203</td><td>RESERVA DE CASILLERO NO ATENDIDA</td><td></td></tr>    <tr><td>1999</td><td>FUERZA MAYOR</td><td></td></tr>    <tr><td></td><td><h4> Respuestas de incidencias en expediciones </h4><hr></td><td></td></tr>    <tr><td>5001</td><td>FACILITAMOS TELEFONO</td><td></td></tr>    <tr><td>5002</td><td>FACILITAMOS DATOS</td><td></td></tr>    <tr><td>5003</td><td>ENTREGAR EN / NUEVA ENTREGA EN:</td><td></td></tr>    <tr><td>5004</td><td>PERSONA DE CONTACTO SR/SRA:</td><td></td></tr>    <tr><td>5005</td><td>VOLVER A ENTREGAR EN LA HORA INDICADA</td><td></td></tr>    <tr><td>5006</td><td>P.O. CLIENTE ENTREGAR EN PORTERIA/BUZON</td><td></td></tr>    <tr><td>5007</td><td>ANULADO RETORNO</td><td></td></tr>    <tr><td>5008</td><td>ANULADO REEMBOLSO</td><td></td></tr>    <tr><td>5009</td><td>P.O. CLIENTE ENTREGAR SIN FIRMAR</td><td></td></tr>    <tr><td>5010</td><td>MODIFICADO PORTES PAGADOS O 3ª CIUDAD</td><td></td></tr>    <tr><td>5011</td><td>ALBARAN DADO DE BAJA</td><td></td></tr>    <tr><td>5012</td><td>PASAMOS ALBARAN MODIFICADO</td><td></td></tr>    <tr><td>5013</td><td>P.O. CLIENTE DEVOLVER A ORIGEN</td><td></td></tr>    <tr><td>5014</td><td>P.O. CLIENTE NO DEVOLVER</td><td></td></tr>    <tr><td>5015</td><td>ENTREGA PARCIAL</td><td></td></tr>    <tr><td>5016</td><td>EXPEDICION DUPLICADA</td><td></td></tr>    <tr><td>5017</td><td>P.O CLIENTE RETENER 30 DÍAS</td><td></td></tr>    <tr><td>5018</td><td>P.O CLIENTE REEXPEDIR</td><td></td></tr>    <tr><td>5019</td><td>CONFIRMACION DE SALIDA</td><td></td></tr>    <tr><td>5020</td><td>RECOGIDO RETORNO</td><td></td></tr>    <tr><td>5021</td><td>SI SE ACEPTA KILOMETRAJE</td><td></td></tr>    <tr><td>5022</td><td>NO SE ACEPTA KILOMETRAJE</td><td></td></tr>    <tr><td>5023</td><td>ROBO COMUNICADO AL CLIENTE</td><td></td></tr>    <tr><td>5024</td><td>PERDIDA COMUNICADA AL CLIENTE</td><td></td></tr>    <tr><td>5025</td><td>HORARIO CONCERTADO (9 EUR)</td><td></td></tr>    <tr><td>5026</td><td>PDTE. DOC. POR PARTE CLIENTE</td><td></td></tr>    <tr><td>5027</td><td>ROTURA COMUNICADA AL CLIENTE</td><td></td></tr>    <tr><td>5028</td><td>RECOGERA EN OFICINA</td><td></td></tr>    <tr><td>5029</td><td>P.O. CLIENTE DEVOLVER AL 3ª CIUDAD</td><td></td></tr>    <tr><td>5030</td><td>RESP. INFORMACIÓN FALLO PUENTE / FALTA ENVÍO</td><td></td></tr>    <tr><td>5033</td><td>INCIDENCIA GESTIONADA DPTO. OPERACIONES</td><td></td></tr>    <tr><td>5034</td><td>SOLICITUD DE INFORMACIÓN FALLO PUENTE / FALTA DE ENVÍO</td><td></td></tr>    <tr><td>5035</td><td>AUTORIZACION A NUEVA ENTREGA</td><td></td></tr>    <tr><td>5036</td><td>ENVIO RETENIDO EN ADUANAS</td><td></td></tr>    <tr><td>5050</td><td>AUTORIZAMOS ENTREGA EN NXSHOP</td><td></td></tr>    <tr><td>5051</td><td>NO AUTORIZAMOS ENTREGA EN NXSHOP</td><td></td></tr>    <tr><td>5052</td><td>SÍ SE AUTORIZA</td><td></td></tr>    <tr><td>5053</td><td>NO SE AUTORIZA</td><td></td></tr>    <tr><td>5060</td><td>ERROR ENLACE NOTIFICADO</td><td></td></tr>    <tr><td>5061</td><td>FALTA DE ENVÍO INTERNACIONAL NOTIFICADA</td><td></td></tr>    <tr><td>5062</td><td>DETERIORO NOTIFICADO</td><td></td></tr>    <tr><td>5063</td><td>RETRASO NOTIFICADO</td><td></td></tr>    <tr><td>5065</td><td>FESTIVO NOTIFICADO</td><td></td></tr>    <tr><td>5066</td><td>REEXPEDICIÓN NOTIFICADA</td><td></td></tr>    <tr><td>5067</td><td>ACEPTAMOS DESTRUCCIÓN</td><td></td></tr>    <tr><td>5070</td><td>FESTIVIDAD NOTIFICADA</td><td></td></tr>    <tr><td>5071</td><td>HUELGA NOTIFICADA</td><td></td></tr>    <tr><td>5073</td><td>POR ORDEN CLIENTE ENTREGAR VECINO / BUZÓN / NO REQUIERE FIRM</td><td></td></tr>    <tr><td>5075</td><td>AFECTACIÓN NOTIFICADA</td><td></td></tr>    <tr><td>5076</td><td>DEMORA NOTIFICADA</td><td></td></tr>    <tr><td>5077</td><td>AUTORIZACIÓN SERVICIO ESPECIAL</td><td></td></tr>    <tr><td>5078</td><td>RECOGERÁ EN PUNTO</td><td></td></tr>    <tr><td>5079</td><td>CÓDIGO DE ACCESO FACILITADO</td><td></td></tr>    <tr><td>5082</td><td>DEJAR EN ABANDONO</td><td></td></tr> </tbody></table><hr></div>
+<div id="solsinOk"> <h1>Estados de incidencia de cierre Nacex.</h1><table class="TBL_entrada"><thead><tr><td>Código</td><td>Descripción</td><td>Detalle</td></tr></thead><tfoot><tr><td colspan="3">Estos estados de incidencia informan que no se podrá recoger o entregar el envío. Finalizan la operativa del envío Nacex.</td></tr></tfoot><tbody>    <tr><td></td><td><h4> Recogidas</h4><hr></td><td></td></tr>    <tr><td>2047</td><td>RECOGIDA SIN SOLUCION</td><td></td></tr>    <tr><td></td><td><h4> Expediciones</h4><hr></td><td></td></tr>    <tr><td>1024</td><td>DEVOLUCION A ORIGEN</td><td></td></tr>    <tr><td>1031</td><td>ROBO TOTAL</td><td></td></tr>    <tr><td>1034</td><td>EXPEDICION DUPLICADA</td><td></td></tr>    <tr><td>1036</td><td>REEXPEDIDO POR INCIDENCIA</td><td></td></tr>    <tr><td>1037</td><td>PERDIDA</td><td></td></tr>    <tr><td>1038</td><td>P.O. CLIENTE, NO DEVOLVER</td><td></td></tr> </tbody></table><hr></div>
+<div id="envasesN"> <h1>Envases España, Portugal y Andorra</h1><table class="TBL_entrada"><thead><tr><td>Código</td><td>Descripción</td><td>Detalle</td></tr></thead><tfoot><tr><td colspan="3">Tipos de envase disponibles. No todos los servicios disponen de todos los envases detallados aquí</td></tr></tfoot><tbody>    <tr><td>0</td><td>Docs</td><td>Documentos, papel</td></tr>    <tr><td>1</td><td>Bag</td><td>Bolsa de envío Nacex normalizada.</td></tr>    <tr><td>2</td><td>Pag</td><td>Caja de cartón, varias medidas</td></tr> </tbody></table><hr></div>
+<div id="envasesI"> <h1>Envases resto de paises</h1><table class="TBL_entrada"><thead><tr><td>Código</td><td>Descripción</td><td>Detalle</td></tr></thead><tfoot><tr><td colspan="3">Tipos de envases internacionales disponibles. No todos los servicios disponen de todos los envases detallados aquí</td></tr></tfoot><tbody>    <tr><td>D</td><td>Documentos</td><td>Documentos, papel</td></tr>    <tr><td>M</td><td>Muestras</td><td>Caja de cartón, varias medidas.</td></tr> </tbody></table><hr></div>
+<div id="serviciosN"> <h1>Servicios España, Portugal y Andorra</h1><table class="TBL_entrada"><thead><tr><td>Código</td><td>Descripción</td><td>Detalle</td></tr></thead><tfoot><tr><td colspan="3">Listados de servicios disponibles en Nacex</td></tr></tfoot><tbody>    <tr><td>01</td><td>NACEX 10:00H</td><td></td></tr>    <tr><td>02</td><td>NACEX 12:00H</td><td></td></tr>    <tr><td>03</td><td>INTERDIA</td><td></td></tr>    <tr><td>04</td><td>PLUS BAG 1</td><td></td></tr>    <tr><td>05</td><td>PLUS BAG 2</td><td></td></tr>    <tr><td>06</td><td>VALIJA</td><td></td></tr>    <tr><td>07</td><td>VALIJA IDA Y VUELTA</td><td></td></tr>    <tr><td>08</td><td>NACEX 19:00H</td><td></td></tr>    <tr><td>09</td><td>PUENTE URBANO</td><td></td></tr>    <tr><td>10</td><td>DEVOLUCION&nbsp;ALBARAN&nbsp;CLIENTE</td><td></td></tr>    <tr><td>11</td><td>NACEX 08:30H</td><td></td></tr>    <tr><td>12</td><td>DEVOLUCION TALON</td><td></td></tr>    <tr><td>14</td><td>DEVOLUCION PLUS BAG 1</td><td></td></tr>    <tr><td>15</td><td>DEVOLUCION PLUS BAG 2</td><td></td></tr>    <tr><td>17</td><td>DEVOLUCION E-NACEX</td><td></td></tr>    <tr><td>21</td><td>NACEX SABADO</td><td></td></tr>    <tr><td>22</td><td>CANARIAS MARITIMO</td><td></td></tr>    <tr><td>24</td><td>CANARIAS 24H</td><td></td></tr>    <tr><td>26</td><td>PLUS PACK</td><td></td></tr>    <tr><td>27</td><td>E-NACEX</td><td></td></tr>    <tr><td>28</td><td>PREMIUM</td><td></td></tr>    <tr><td>29</td><td>NX-SHOP VERDE</td><td></td></tr>    <tr><td>30</td><td>NX-SHOP NARANJA</td><td></td></tr>    <tr><td>31</td><td>E-NACEX SHOP</td><td></td></tr>    <tr><td>33</td><td>C@MBIO</td><td></td></tr>    <tr><td>48</td><td>CANARIAS 48H</td><td></td></tr>    <tr><td>88</td><td>INMEDIATO</td><td></td></tr>    <tr><td>90</td><td>NACEX.SHOP</td><td></td></tr>    <tr><td>91</td><td>SWAP</td><td></td></tr>    <tr><td>95</td><td>RETORNO SWAP</td><td></td></tr>    <tr><td>96</td><td>DEV. ORIGEN</td><td></td></tr> </tbody></table><hr></div>
+<div id="frecuencia"> <h1>Frecuencias</h1><table class="TBL_entrada"><thead><tr><td>Código</td><td>Descripción</td><td>Detalle</td></tr></thead><tfoot><tr><td colspan="3">Frecuencias disponibles en sevicios Interdia y Puente Urbano.</td></tr></tfoot><tbody>    <tr><td>1</td><td>Interdía o Puente Urbano: frecuencia 1 (mañana)</td><td></td></tr>    <tr><td>2</td><td>Interdía o Puente Urbano: frecuencia 2 (tarde)</td><td></td></tr>    <tr><td>8</td><td>Puente urbano nocturno.</td><td></td></tr>    <tr><td>9</td><td>Interdía aéreo.</td><td></td></tr> </tbody></table><hr></div>
+<div id="serviciosI"> <h1>Servicios resto de paises</h1><table class="TBL_entrada"><thead><tr><td>Código</td><td>Descripción</td><td>Detalle</td></tr></thead><tfoot><tr><td colspan="3">Listados de servicios internacionales disponibles en Nacex</td></tr></tfoot><tbody>    <tr><td>E</td><td>EURONACEX TERRESTRE</td><td></td></tr>    <tr><td>F</td><td>SERVICIO AEREO</td><td></td></tr>    <tr><td>G</td><td>EURONACEX ECONOMY</td><td></td></tr>    <tr><td>H</td><td>PLUSPACK EUROPA</td><td></td></tr> </tbody></table><hr></div>
+<div id="cobros"> <h1>Tipos de cobro</h1><table class="TBL_entrada"><thead><tr><td>Código</td><td>Descripción</td><td>Detalle</td></tr></thead><tfoot><tr><td colspan="3">Indica quién se hace cargo del importe del servicio de transporte.</td></tr></tfoot><tbody>    <tr><td>O</td><td>Origen</td><td>Factura la agencia origen del envío</td></tr>    <tr><td>D</td><td>Destino</td><td>Factura la agencia de entrega del envío</td></tr>    <tr><td>T</td><td>Tercera</td><td>Factura una tercera agencia</td></tr> </tbody></table><hr></div>
+<div id="ree_ade"> <h1>Tipos de reembolso o adelanto</h1><table class="TBL_entrada"><thead><tr><td>Código</td><td>Descripción</td><td>Detalle</td></tr></thead><tfoot><tr><td colspan="3">Indica si el envío requiere el servicio complementario de pago a la entrega o a la recogida.</td></tr></tfoot><tbody>    <tr><td>N</td><td>No</td><td>No se solicita el servicio complemntario, por defecto es el valor que aplica el WS.</td></tr>    <tr><td>O</td><td>Origen</td><td>Servicio complementario de Reembolso a cargo de la agencia de Origen</td></tr>    <tr><td>D</td><td>Destino</td><td>Servicio complementario de Reembolso a cargo de la agencia de Destino</td></tr>    <tr><td>A</td><td>Adelanto</td><td>Adelanto del importe indicado, pago en la recogida. </td></tr> </tbody></table><hr></div>
+<div id="estado_ree_ade"> <h1>Estados del reembolso o adelanto</h1><table class="TBL_entrada"><thead><tr><td>Código</td><td>Descripción</td><td>Detalle</td></tr></thead><tfoot><tr><td colspan="3">Indica si el envío requiere el servicio complementario de pago a la entrega o a la recogida.</td></tr></tfoot><tbody>    <tr><td>P</td><td>Pendiente</td><td>Pendiente de gestionar</td></tr>    <tr><td>T</td><td>Tramite</td><td>Iniciada la gestión del reembolso/ adelanto. </td></tr>    <tr><td>E</td><td>Emitiendo talón o transferencia</td><td>Gestión de pago en curso</td></tr>    <tr><td>D</td><td>Emitido</td><td>Emitido pago</td></tr> </tbody></table><hr></div>
+<div id="aduana"> <h1>Tipos de Aduana</h1><table class="TBL_entrada"><thead><tr><td>Código</td><td>Descripción</td><td>Detalle</td></tr></thead><tfoot><tr><td colspan="3">Indica si el envío requiere el servicio complementario de Aduana.</td></tr></tfoot><tbody>    <tr><td>N</td><td>No</td><td>No se solicita el servicio complementario, por defecto es el valor que aplica el WS.</td></tr>    <tr><td>O</td><td>Origen</td><td>Servicio complementario de Aduana a cargo de la agencia de origen</td></tr>    <tr><td>D</td><td>Destino</td><td>Servicio complementario de Aduana a cargo de la agencia de entrega</td></tr>    <tr><td>T</td><td>Tercera</td><td>Servicio complementario de Aduana a cargo de la agencia de cliente</td></tr> </tbody></table><hr></div>
+<div id="gestion"> <h1>Tipos de Gestión y Trámite</h1><table class="TBL_entrada"><thead><tr><td>Código</td><td>Descripción</td><td>Detalle</td></tr></thead><tfoot><tr><td colspan="3">Indica si el envío requiere el servicio complementario de Gestión y/o Trámite.</td></tr></tfoot><tbody>    <tr><td>N</td><td>No</td><td>No se solicita el servicio complementario, por defecto es el valor que aplica el WS.</td></tr>    <tr><td>O</td><td>Origen</td><td>Servicio complementario de gestión en origen</td></tr>    <tr><td>D</td><td>Destino</td><td>Servicio complementario de gestión en entrega</td></tr>    <tr><td>A</td><td>Ambos</td><td>Servicio complementario de gestión en origen y en entrega</td></tr>    <tr><td>R</td><td>Origen</td><td>Servicio complementario de trámite en origen</td></tr>    <tr><td>E</td><td>Destino</td><td>Servicio complementario de trámite en entrega</td></tr>    <tr><td>T</td><td>Ambos</td><td>Servicio complementario de trámite en origen y en entrega</td></tr> </tbody></table><hr></div>
+<div id="vehiculo"> <h1>Tipos de vehiculo</h1><table class="TBL_entrada"><thead><tr><td>Código</td><td>Descripción</td><td>Detalle</td></tr></thead><tfoot><tr><td colspan="3">Vehiculo recomendado.</td></tr></tfoot><tbody>    <tr><td>M</td><td>Motocicleta</td><td></td></tr>    <tr><td>C</td><td>Coche</td><td></td></tr> </tbody></table><hr></div>
+<div id="seguros"> <h1>Tipos de seguro</h1><table class="TBL_entrada"><thead><tr><td>Código</td><td>Descripción</td><td>Detalle</td></tr></thead><tfoot><tr><td colspan="3">Sercicio complementario de seguros de mercancía.</td></tr></tfoot><tbody>    <tr><td>N</td><td>No asegurado, valor por defecto. (Seguro básico hasta 3.000 €)</td><td></td></tr>    <tr><td>A</td><td>Mercancía general superior a 3.000 €</td><td></td></tr>    <tr><td>B</td><td>Joyería</td><td></td></tr>    <tr><td>C</td><td>Telefonía</td><td></td></tr>    <tr><td>D</td><td>Mercancía especial/exclusiva</td><td></td></tr>    <tr><td>E</td><td>Armas munición, accesorios y repuestos</td><td></td></tr>    <tr><td>F</td><td>Loteria (en administración de lotería), cheques gourmet, entradas espectáculos, Smartbox</td><td></td></tr> </tbody></table><hr></div>
+<div id="tprealerta"> <h1>Tipos de Prealerta</h1><table class="TBL_entrada"><thead><tr><td>Código</td><td>Descripción</td><td>Detalle</td></tr></thead><tfoot><tr><td colspan="3">Preealerta de recogida o entrega de un envío.</td></tr></tfoot><tbody>    <tr><td>N</td><td>No se avisa</td><td></td></tr>    <tr><td>S</td><td>Envío de prealerta mediante un SMS</td><td></td></tr>    <tr><td>E</td><td>Envío de prealerta mediante un EMAIL</td><td></td></tr>    <tr><td>Z</td><td>Envío de prealerta mediante un SMS sin compromiso de entrega.</td><td></td></tr>    <tr><td>M</td><td>Envío de prealerta mediante un EMAIL sin compromiso de entrega.</td><td></td></tr> </tbody></table><hr></div>
+<div id="mprealerta"> <h1>Modos de Prealerta</h1><table class="TBL_entrada"><thead><tr><td>Código</td><td>Descripción</td><td>Detalle</td></tr></thead><tfoot><tr><td colspan="3">Modos de prealerta, indica cuando se gestionan.</td></tr></tfoot><tbody>    <tr><td>S</td><td>Standard: prealerta que se envia a las 18:00 de la fecha indicada como creación de la expedición</td><td></td></tr>    <tr><td>P</td><td>Plus: prealerta Standard a la que se permite añadir texto de información (msg1)</td><td></td></tr>    <tr><td>R</td><td>Reparto: prealerta que se envia una vez la expedición sale a reparto</td><td></td></tr>    <tr><td>E</td><td>Reparto Plus: prealerta Reparto a la que se permite añadir texto de información (msg1)</td><td></td></tr> </tbody></table><hr></div>
+<div id="ealerta"> <h1>Ealerta</h1><table class="TBL_entrada"><thead><tr><td>Código</td><td>Descripción</td><td>Detalle</td></tr></thead><tfoot><tr><td colspan="3">Servicio complementario de información al cliente Nacex de la recogida o entrega de su envío.</td></tr></tfoot><tbody>    <tr><td>N</td><td>Sin ealerta.</td><td></td></tr>    <tr><td>S</td><td>Ealerta informada mediante un SMS.</td><td></td></tr>    <tr><td>E</td><td>Ealerta informada mediante un correo electrónico.</td><td></td></tr> </tbody></table><hr></div>
+<div id="albCLientes"> <h1>Albaranes de cliente</h1><table class="TBL_entrada"><thead><tr><td>Código</td><td>Descripción</td><td>Detalle</td></tr></thead><tfoot><tr><td colspan="3">Servicio complementario de gestión de albaranes de cliente.</td></tr></tfoot><tbody>    <tr><td>N</td><td>Sin gestión.</td><td></td></tr>    <tr><td>D</td><td>Digitalizar.</td><td></td></tr>    <tr><td>A</td><td>Digitalizar y archivar/custodiar.</td><td></td></tr>    <tr><td>R</td><td>Retorno del albarán al cliente.</td><td></td></tr> </tbody></table><hr></div>
+<div id="erroresWS"> <h1>Mensajes de error del WS</h1><table class="TBL_entrada"><thead><tr><td>Código</td><td>Descripción</td><td>Detalle</td></tr></thead><tfoot><tr><td colspan="3">El WS informa con un código y un mensaje descriptivo del error que se ha producido al gestionar su petición.</td></tr></tfoot><tbody>    <tr><td>5400</td><td>Solicitud mal formada.</td><td></td></tr>    <tr><td>5401</td><td>Usuario inválido.</td><td></td></tr>    <tr><td>5403</td><td>Método no autorizado.</td><td></td></tr>    <tr><td>5404</td><td>Sesión inválida. Debe autenticarse usando el método "login".</td><td></td></tr>    <tr><td>5412</td><td>Parámetros inválidos [detalle_errores_validacion].</td><td></td></tr>    <tr><td>5413</td><td>Información de parámetros incorrecta o insuficiente.</td><td></td></tr>    <tr><td>5415</td><td>Este método no existe.</td><td></td></tr>    <tr><td>5416</td><td>Los parámetros "user", "pass", "method" y/o "data" están ausentes y/o incorrectamente informados.</td><td></td></tr>    <tr><td>5417</td><td>Se necesita un parámetro adicional.</td><td></td></tr>    <tr><td>5418</td><td>El cambio de estado solicitado no se gestiona actualmente por este Web Service.</td><td></td></tr>    <tr><td>5500</td><td>Error inesperado en el Web Service [detalle_error_inesperado].</td><td></td></tr>    <tr><td>5501</td><td>Excepción en DAO [detalle_error_dao].</td><td></td></tr>    <tr><td>5600</td><td>El motor de negocio lanzó una excepción [detalle_errores_motor].</td><td></td></tr>    <tr><td>5601</td><td>Cliente inválido.</td><td></td></tr>    <tr><td>5602</td><td>Usuario sin clientes.</td><td></td></tr>    <tr><td>5610</td><td>Expedición inválida [detalle_errores_expedicion].</td><td></td></tr>    <tr><td>5611</td><td>No existe expedición relacionada.</td><td></td></tr>    <tr><td>5612</td><td>Hay
+ más de una expedición relacionada. Por favor, usa el método 
+getCodigosReferencia o getEstadoRecogida2 con el parámetro re_unica=S.</td><td></td></tr>    <tr><td>5613</td><td>Expedición en Agencia. No puede imprimir etiquetas.</td><td></td></tr>    <tr><td>5614</td><td>Expedición no modificable.</td><td></td></tr>    <tr><td>5615</td><td>El tipo de servicio es incorrecto para una Expedición internacional.</td><td></td></tr>    <tr><td>5616</td><td>El contenido debe estar informado para una Expedición internacional.</td><td></td></tr>    <tr><td>5617</td><td>El valor declarado debe estar informado para una Expedición internacional.</td><td></td></tr>    <tr><td>5618</td><td>El servicio complementario indicado no existe para una Expedición internacional.</td><td></td></tr>    <tr><td>5619</td><td>Este método no admite servicios internacionales.</td><td></td></tr>    <tr><td>5620</td><td>No existe el envío.</td><td></td></tr>    <tr><td>5621</td><td>Punto de entrega Nacex Shop no disponible.</td><td></td></tr>    <tr><td>5622</td><td>No se ha informado del parámetro shop_codigo para un servicio con punto de recogida.</td><td></td></tr>    <tr><td>5623</td><td>No existen reembolsos con este criterio de búsqueda.</td><td></td></tr>    <tr><td>5624</td><td>No existen expediciones con este criterio de búsqueda.</td><td></td></tr>    <tr><td>5630</td><td>Excedido el número de bultos.</td><td></td></tr>    <tr><td>5640</td><td>No existe recogida relacionada.</td><td></td></tr>    <tr><td>5641</td><td>Recogida asignada a mensajero.</td><td></td></tr>    <tr><td>5642</td><td>Esta recogida tiene Km. Debe autorizarla indicando acepto_km=S.</td><td></td></tr>    <tr><td>5643</td><td>Horario de recogida incorrecto.</td><td></td></tr>    <tr><td>5644</td><td>Imposible encontrar servicio válido.</td><td></td></tr>    <tr><td>5645</td><td>Tipo prealerta no válido para el servicio indicado.</td><td></td></tr>    <tr><td>5646</td><td>No existen albaranes de cliente.</td><td></td></tr>    <tr><td>5650</td><td>No hay ninguna agencia con ese código postal.</td><td></td></tr>    <tr><td>5651</td><td>No existe el código postal.</td><td></td></tr>    <tr><td>5660</td><td>Esta autorización ya ha sido registrada.</td><td></td></tr>    <tr><td>5661</td><td>Rango de fechas incorrecto o superior a lo establecido</td><td></td></tr>    <tr><td>5662</td><td>El tipo de servicio no existe</td><td></td></tr>    <tr><td>5663</td><td>Impresora incorrecta para la impresión de albaranes de cliente.</td><td></td></tr>    <tr><td>5680</td><td>Excepción por error de formato.</td><td></td></tr>    <tr><td>5681</td><td>Valor inválido.</td><td></td></tr>    <tr><td>5682</td><td>Error de análisis sintáctico.</td><td></td></tr>    <tr><td>5690</td><td>Excepción SQL en BBDD [detalle_error_bbdd].</td><td></td></tr>    <tr><td>5691</td><td>Transacción fallida al intentar guardar o actualizar la expedición [detalle_error_bbdd]</td><td></td></tr> </tbody></table><hr></div>
+
+</body></html>

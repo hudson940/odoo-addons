@@ -1,0 +1,80 @@
+<html><head>
+<meta charset="UTF-8">
+  <title>Documentación WS Nacex</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  	<link rel="stylesheet" href="getValoracion%20Archivos/ws_doc.css">
+
+  <style type="text/css">
+   .menu {
+      float:left;
+      width:14%;
+      height:90%;
+    }
+    .mainContent {
+      float:left;
+      width:85%;
+      height:95%;
+    }
+  </style>
+<script src="getValoracion%20Archivos/jquery-3.js"></script>
+<script>
+
+if(window.top != window.self)
+	  parent.location.reload(true);
+
+
+$(document).ready(function() {
+	$("li").click(function(){
+		$( "li" ).removeClass( "active" );
+		event.preventDefault();
+		$(this).addClass("active");
+		$(".mainContent").attr("src", "es."+this.getAttribute('id')+".html");
+	});
+});
+</script>
+
+
+</head>
+<body>
+<div class="menu">
+  	<ul class="menuUl">
+  	  <li class="" id="presentacion">Presentación</li>
+	  <li id="ejemplo">Ejemplos <hr><b>Métodos</b></li>
+      <li id="addBulto">addBulto</li>
+      <li id="authDevolucion">authDevolucion</li>
+      <li id="cancelExpedicion">cancelExpedicion</li>
+      <li id="cancelRecogida">cancelRecogida</li>
+      <li id="editExpedicion">editExpedicion</li>
+      <li id="editUser">editUser</li>
+      <li id="getAgencia">getAgencia...</li><!-- getAgencia getAgencia2 getAgencia3 getAgenciaGPS -->
+      <li id="getAlbDevolucion">getAlbDevolucion</li>
+      <li id="getCB">getCB...</li><!-- getCB getCB2 getCBRef-->
+      <li id="getCodigoPais">getCodigoPais</li>
+      <li id="getCodigosReferencia">getCodigosReferencia</li>
+      <li id="getEstadisticas">getEstadisticas</li>
+      <li id="getEstadoExpedicion">getEstadoExpedicion...</li><!-- getEstadoExpedicion getEstadoExpedicion2 -->
+      <li id="getEstadoRecogida">getEstadoRecogida...</li><!-- getEstadoRecogida getEstadoRecogida2 -->
+      <li id="getEtiqueta">getEtiqueta...</li><!-- getEtiqueta getEtiqueta2 getEtiquetaBultos getEtiquetaBultos2 getEtiquetaBultosRef getEtiquetaRef getEtiquetaRefControlBulto -->
+      <li id="getExpeCodigo">getExpeCodigo</li>
+      <li id="getExpedicion">getExpedicion...</li><!-- getExpedicion getExpedicion2 -->
+      <li id="getFicheroNacexShop">getFicheroNacexShop</li>
+      <li id="getHistoricoExpedicion">getHistoricoExpedicion</li>
+      <li id="getInfoEntrega">getInfoEntrega</li><!-- getInfoEntrega getInfoEntrega2 -->
+      <li id="getInfoEnvio">getInfoEnvio...</li><!-- getInfoEnvioRef -->
+      <li id="getListadoExpediciones">getListadoExpediciones</li>
+      <li id="getListadoReembolsos">getListadoReembolsos</li>
+      <li id="getPOD">getPOD</li>
+      <li id="getProxi">getProxi</li>
+      <li id="getPueblos">getPueblos</li>
+      <li id="getPuntoEntregaGPS">getPuntoEntregaGPS</li>
+      <li id="getReembolso">getReembolso</li>
+      <li id="getValoracion" class="active">getValoracion</li>
+      <li id="putEstado">putEstado</li>
+      <li id="putExpedicion">putExpedicion</li>
+      <li id="putRecogida">putRecogida</li>
+	 </ul>
+  <br><br>
+</div>
+  <iframe class="mainContent" src="getValoracion%20Archivos/es.html"></iframe>
+
+</body></html>
