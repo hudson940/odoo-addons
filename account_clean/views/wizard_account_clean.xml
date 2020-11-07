@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="wizard_account_clean_form_view" model="ir.ui.view">
+            <field name="name">wizard.account.clean.form.view</field>
+            <field name="model">wizard.account.clean</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Wizard">
+
+                    <div class="alert alert-info" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('message','=', False)]}">
+                            <span class="o_stat_value">
+                                <div class="o_form_field o_stat_info">
+                                    <field name="message" readonly="1"/>
+                                    <field name="is_done" readonly="1"/>
+                                </div>
+                            </span>
+                    </div>
+                    <group>
+                        <field name="pos_ids"/>
+                    </group>
+                    <group col="6" colspan="6" string="Dates">
+                        <field name="date_from" attrs="{'readonly': [('is_done','!=',False)]}"/>
+                        <field name="date_to" attrs="{'readonly': [('is_done','!=',False)]}"/>
+                    </group>
+                    <group>
+                        <field name="percentage" string="Percentage EJ. 15.55" attrs="{'readonly': [('is_done','!=',False)]}"/>
+                        <field name="total_amount"></field>
+                        <field name="total_amount_after"/>
+                    </group>
+                    <group string="Orders">
+                       <field name="pos_order_ids"/>
+                    </group>
+                    <group string="Sessions">
+                       <field name="pos_session_ids">
+                           <tree>
+                               <field name="config_id"/>
+                               <field name="name"/>
+                               <field name="user_id"/>
+                               <field name="state"/>
+                           </tree>
+                       </field>
+                    </group>
+                    <footer>
+                        <button string="Preview" name="compute_preview" type="object" class="btn-primary"/>
+                        <button string='Validate' name="validate" type="object" class="btn-danger" attrs="{'invisible': [('is_done','!=',False)]}"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

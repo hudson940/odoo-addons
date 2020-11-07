@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="woo_instance_form_view_ept_inherit" model="ir.ui.view">
+            <field name="name">woo.instance.form.view.ept.inherit</field>
+            <field name="model">woo.instance.ept</field>
+            <field name="inherit_id" ref="woo_commerce_ept.woo_instance_form_view_ept"/>
+            <field name="arch" type="xml">
+                <xpath expr="(//field[@name='warehouse_id'])" position="before">
+                    <field name="pos_config_id"/>
+                    <field name="tax_included"/>
+                </xpath>
+
+            </field>
+    </record>
+</odoo>

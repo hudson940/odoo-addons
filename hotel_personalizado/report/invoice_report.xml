@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-
-<odoo>
-    <template id="custom_hotel_inovice_report" inherit_id="account.report_invoice_document">
-        <xpath expr="//span[@t-field='l.name']" position="before">
-           <span t-if="l.product_id.isroom">Habitación: </span>
-    </xpath>
-    </template>
-</odoo>

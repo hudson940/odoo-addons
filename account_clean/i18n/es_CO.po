@@ -1,0 +1,146 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* account_clean
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-10 19:00+0000\n"
+"PO-Revision-Date: 2020-09-10 19:00+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_clean
+#: code:addons/account_clean/wizard/wizard_account_clean.py:57
+#: model:ir.actions.act_window,name:account_clean.action_wizard_account_clean
+#: model:ir.ui.menu,name:account_clean.menu_account_clean_parent
+#, python-format
+msgid "Account Clean"
+msgstr ""
+
+#. module: account_clean
+#: model_terms:ir.ui.view,arch_db:account_clean.wizard_account_clean_form_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: account_clean
+#: model:ir.model.fields,field_description:account_clean.field_wizard_account_clean__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: account_clean
+#: model:ir.model.fields,field_description:account_clean.field_wizard_account_clean__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: account_clean
+#: model:ir.model.fields,field_description:account_clean.field_wizard_account_clean__date_from
+msgid "Date From"
+msgstr "Fecha desde"
+
+#. module: account_clean
+#: model:ir.model.fields,field_description:account_clean.field_wizard_account_clean__date_to
+msgid "Date To"
+msgstr "Fecha Hasta"
+
+#. module: account_clean
+#: model_terms:ir.ui.view,arch_db:account_clean.wizard_account_clean_form_view
+msgid "Dates"
+msgstr "Fechas"
+
+#. module: account_clean
+#: model:ir.model.fields,field_description:account_clean.field_wizard_account_clean__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: account_clean
+#: model:ir.model.fields,field_description:account_clean.field_wizard_account_clean__id
+msgid "ID"
+msgstr "ID"
+
+#. module: account_clean
+#: model:ir.model.fields,field_description:account_clean.field_wizard_account_clean____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: account_clean
+#: model:ir.model.fields,field_description:account_clean.field_wizard_account_clean__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: account_clean
+#: model:ir.model.fields,field_description:account_clean.field_wizard_account_clean__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: account_clean
+#: model_terms:ir.ui.view,arch_db:account_clean.wizard_account_clean_form_view
+msgid "Orders"
+msgstr "Órdenes"
+
+#. module: account_clean
+#: model:ir.model.fields,field_description:account_clean.field_wizard_account_clean__percentage
+msgid "Percentage %"
+msgstr "Porcentaje %"
+
+#. module: account_clean
+#: model_terms:ir.ui.view,arch_db:account_clean.wizard_account_clean_form_view
+msgid "Percentage EJ. 15.55"
+msgstr "Porcentaje EJ. 15.55"
+
+#. module: account_clean
+#: model:ir.model.fields,field_description:account_clean.field_wizard_account_clean__pos_order_ids
+msgid "Pos Order"
+msgstr "Pos Order"
+
+#. module: account_clean
+#: model:ir.model.fields,field_description:account_clean.field_wizard_account_clean__pos_session_ids
+msgid "Pos Session"
+msgstr "Pos Session"
+
+#. module: account_clean
+#: model_terms:ir.ui.view,arch_db:account_clean.wizard_account_clean_form_view
+msgid "Preview"
+msgstr "Previsualizar"
+
+#. module: account_clean
+#: model_terms:ir.ui.view,arch_db:account_clean.wizard_account_clean_form_view
+msgid "Sessions"
+msgstr "Sesiones."
+
+#. module: account_clean
+#: model:ir.model.fields,field_description:account_clean.field_wizard_account_clean__total_amount
+msgid "Total Amount"
+msgstr "Monto Total"
+
+#. module: account_clean
+#: model:ir.model.fields,field_description:account_clean.field_wizard_account_clean__total_amount_after
+msgid "Total Amount After"
+msgstr "Monto Total Después"
+
+#. module: account_clean
+#: model_terms:ir.ui.view,arch_db:account_clean.wizard_account_clean_form_view
+msgid "Validate"
+msgstr "Validar"
+
+#. module: account_clean
+#: code:addons/account_clean/wizard/wizard_account_clean.py:47
+#, python-format
+msgid "Incorrect percentage value"
+msgstr "Valor de porcentaje incorrecto"
+
+#. module: account_clean
+#: model_terms:ir.ui.view,arch_db:account_clean.wizard_account_clean_form_view
+msgid "Wizard"
+msgstr ""
+
+#. module: account_clean
+#: model:ir.model,name:account_clean.model_wizard_account_clean
+msgid "wizard.account.clean"
+msgstr ""
+

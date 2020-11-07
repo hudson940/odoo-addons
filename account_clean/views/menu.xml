@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="action_wizard_account_clean">
+            <field name="name">Account Clean</field>
+            <field name="res_model">wizard.account.clean</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_account_clean_parent" name="Account Clean" parent="base.menu_custom" action="action_wizard_account_clean"/>
+
+    </data>
+</odoo>
