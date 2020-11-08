@@ -27,16 +27,5 @@
             <field name="shipper_package_code">D</field>
             <field name="package_carrier_type">nacex</field>
         </record>
-        <!--        <record id="package_docs" model="product.packaging">-->
-        <!--            <field name="name">DOCS</field>-->
-        <!--            -->
-        <!--            <field name="categ_id" ref="product.product_category_all"/>-->
-        <!--            <field name="standard_price">0.0</field>-->
-        <!--            <field name="list_price">0.0</field>-->
-        <!--            <field name="type">service</field>-->
-        <!--            <field name="uom_id" ref="product.product_uom_unit"/>-->
-        <!--            <field name="uom_po_id" ref="product.product_uom_unit"/>-->
-        <!--            <field name="purchase_line_warn">no-message</field>-->
-        <!--        </record>-->
     </data>
 </odoo>

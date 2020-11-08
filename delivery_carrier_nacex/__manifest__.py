@@ -11,6 +11,7 @@
     "version": "1.0.0",
     "author": "Techmayoreo",
     "maintainer": "Anderson Martinez",
+    "email": "anderson.martinez@techmayoreo.com",
     "website": "https://techmayoreo.com",
     "description": """Nacex Shipping Api Integration""",
     "depends": [
@@ -24,6 +25,7 @@
         'views/delivery_carrier.xml',
         'views/menus.xml',
         'views/nacex_odoo_configuration.xml',
+        'views/stock_picking.xml',
     ],
     "images": ['static/description/logo.png'],
     "application": True,

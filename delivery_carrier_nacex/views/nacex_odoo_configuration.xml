@@ -20,12 +20,12 @@
             <form>
                 <header>
                     <button name="test_connection" string="Probar Conexión" type="object" class="oe_highlight"/>
-                    <button name="import_config" string="Configurar" type="object" class="oe_highlight"/>
                 </header>
                 <sheet>
                         <group string="Nacex Configuration" col="1">
                             <field name="name" required="1"/>
                             <field name="url_ws" widget="url" required="1"/>
+                            <field name="url_tracking" widget="url" required="1"/>
                             <field name="url_print"/>
                             <field name="printer_model"/>
                             <field name="user" required="1"/>

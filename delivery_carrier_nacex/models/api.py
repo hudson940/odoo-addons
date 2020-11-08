@@ -82,8 +82,11 @@ class nacex_api():
         if extra_headers:
             self.session.headers.update(extra_headers)
         url = self.prepare_url(path)
-        response = self.session.get(url, params=params,
+        try:
+            response = self.session.get(url, params=params,
                                     headers=self.session.headers)
+        except Exception as e:
+            raise ValidationError(repr(e))
         return self.validate_response(response, params)
 
     def post(self, path, data=None, extra_headers=None):
@@ -305,3 +308,12 @@ class nacex_api():
         except Exception as e:
             raise ValidationError('Error al estimar el costo del envio %s' % repr(e))
         raise ValidationError('Error al estimar el costo del envio')
+
+    def cancel_expedition(self, exp_code, agency):
+        data = 'data=%s|%s' % (exp_code, agency)
+        return self.get('method=cancelExpedicion&%s' % data).split('|')
+
+    def get_label(self, cod_exp, tracking, model):
+        data = 'data=codExp={cod_exp}|modelo={modelo}'.format(cod_exp=cod_exp, modelo=model)
+        res = self.get('method=getEtiqueta&%s' % data)
+        return res

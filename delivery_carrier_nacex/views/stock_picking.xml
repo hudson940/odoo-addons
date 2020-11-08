@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_stock_picking_form_inherit" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherited</field>
+        <field name="model">stock.picking</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button name="action_get_label" string="Obtener Etiqueta" attrs="{'invisible': ['|', ('carrier_expedition_code', '=', False), ('state','!=','done')]}"  groups="base.group_user" type="object"/>
+            </header>
+            <group name="carrier_data" position="inside">
+                <field name="carrier_expedition_code" readonly="1"/>
+            </group>
+        </field>
+    </record>
+</odoo>

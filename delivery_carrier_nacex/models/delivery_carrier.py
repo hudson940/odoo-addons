@@ -19,59 +19,28 @@ class DeliveryCarrier(models.Model):
         conn = nacex_api(self.nacex_config_id)
         pickings.ensure_one()
         cod_exp, tracking = conn.put_expedition(self, pickings)
+        pickings.write({'carrier_expedition_code': cod_exp})
         return [{'exact_price': 0.0, 'tracking_number': tracking}]
-            # body = self.create_or_update_order(picking)
-            # try:
-            #     response_data = self.api_calling_function("/orders/createorder", body)
-            #     if response_data.status_code == 200:
-            #         responses = response_data.json()
-            #         _logger.info("Response Data: %s" % (responses))
-            #         order_id = responses.get('orderId')
-            #         order_key = responses.get('orderKey')
-            #         if order_id:
-            #             picking.nacex_order_id = order_id
-            #             picking.nacex_order_key = order_key
-            #         return [{'exact_price': 0.0, 'tracking_number': ''}]
-            #     else:
-            #         error_code = "%s" % (response_data.status_code)
-            #         error_message = response_data.reason
-            #         error_detail = {'error': error_code + " - " + error_message + " - "}
-            #         if response_data.json():
-            #             error_detail = {'error': error_code + " - " + error_message + " - %s" % (response_data.json())}
-            #         raise ValidationError(error_detail)
-            # except Exception, e:
-            #     raise ValidationError(e)
+
 
     def nacex_cancel_shipment(self, picking):
         conn = nacex_api(self.nacex_config_id)
-        shipment_id = picking.nacex_shipment_id
-        if not shipment_id:
-            raise ValidationError("nacex Shipment Id Not Available!")
-        req_data = {"shipmentId": shipment_id}
-        try:
-            response_data = self.api_calling_function("/shipments/voidlabel", req_data)
-            if response_data.status_code == 200:
-                responses = response_data.json()
-                _logger.info("Response Data: %s" % (responses))
-                approved = responses.get('approved')
-                if approved:
-                    picking.message_post(body=_('Shipment Cancelled In nacex %s' % (shipment_id)))
-            else:
-                error_code = "%s" % (response_data.status_code)
-                error_message = response_data.reason
-                error_detail = {'error': error_code + " - " + error_message + " - "}
-                if response_data.json():
-                    error_detail = {'error': error_code + " - " + error_message + " - %s" % (response_data.json())}
-                raise ValidationError(error_detail)
-        except Exception, e:
-            raise Warning(e)
+        picking.ensure_one()
+
+        exp_code = picking.carrier_expedition_code
+        if not exp_code:
+            raise ValidationError("No se encuetra el Código de expedición")
+        agency = picking.carrier_tracking_ref.split('/')[0]
+        res = conn.cancel_expedition(exp_code, agency)
+        if res:
+            picking.message_post(body=('Envío cancelado en nacex %s' % (picking.carrier_tracking_ref)))
         return True
 
     def nacex_get_tracking_link(self, pickings):
         res = ""
         for picking in pickings:
-            link = "%s"%(picking.carrier_id and picking.carrier_id.nacex_carrier_id and picking.carrier_id and picking.carrier_id.nacex_carrier_id.provider_tracking_link)
+            link = "%s" % picking.carrier_id.nacex_config_id.url_tracking
             if not link:
-                raise ValidationError("Provider Link Is not available")
+                raise ValidationError("Configura la URL de seguimiento en la configuración nacex %s" % picking.carrier_id.nacex_config_id.name)
             res = '%s %s' % (link, picking.carrier_tracking_ref)
         return res

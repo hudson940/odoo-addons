@@ -11,6 +11,7 @@ class DeliveryCarrierNacex(models.Model):
     name = fields.Char()
     url_ws = fields.Char('URL WS', default='http://pda.nacex.com/nacex_ws')
     url_print = fields.Char('URL Print', default='http://www.nacex.es/applets')
+    url_tracking = fields.Char('URL seguimiento/rastreo', default='http://pda.nacex.com/nacex_ws')
     printer_model = fields.Selection([('IMAGEN_B', 'IMAGEN')], default='IMAGEN_B')
     user = fields.Char('Usuario Web Service')
     password = fields.Char('Password Web Service')
@@ -32,14 +33,16 @@ class DeliveryCarrierNacex(models.Model):
     nacex_default_alert_type = fields.Selection(ALERT_TYPES, 'Tipo de prealerta por defecto')
     nacex_default_alert_mode = fields.Selection(ALERT_MODES, 'Modo de prealerta por defecto')
 
-
-
     def test_connection(self):
-        raise Warning('test_connection')
-
-    def import_config(self):
-        raise Warning('test_connection')
-
-
-
+        conn = nacex_api(self)
+        try:
+            assert self.delivery_method_ids, 'Configure al menos un método de envío'
+            params = conn.prepare_common_params(self.delivery_method_ids[0], partner_shipping_id=self.env.user.partner_id,
+                                                partner_origin_id=self.env.user.company_id, lines=[])
+            params['kil']=1
+            data = conn.params_to_data(params)
+            response = conn.get('method=getValoracion&%s' % data).split('|')
+        except Exception as e:
+            raise Warning('Error %s' % repr(e))
+        raise Warning('Conexión existosa: servicio consultado: %s, tarifa estimada: %s ' % tuple(response))
 
